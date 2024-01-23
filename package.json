@@ -9,14 +9,26 @@
     "deploy": "sst deploy",
     "remove": "sst remove",
     "console": "sst console",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"*.ts\" --fix"
   },
   "devDependencies": {
-    "sst": "^2.39.6",
+    "@tsconfig/node18": "^18.2.2",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
     "aws-cdk-lib": "2.110.1",
     "constructs": "10.3.0",
-    "typescript": "^5.3.3",
-    "@tsconfig/node18": "^18.2.2"
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "sst": "^2.39.6",
+    "typescript": "^5.3.3"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "npm run lint"
+    ]
   },
   "workspaces": [
     "packages/*"

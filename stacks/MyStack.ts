@@ -1,4 +1,5 @@
-import { StackContext, StaticSite } from "sst/constructs";
+/* eslint-disable import/no-extraneous-dependencies */
+import { StackContext, StaticSite } from 'sst/constructs';
 
 export function API({ stack }: StackContext) {
   const web = new StaticSite(stack, 'web', {
@@ -11,6 +12,6 @@ export function API({ stack }: StackContext) {
   });
 
   stack.addOutputs({
-    CloudfrontUrl: web.url
+    CloudfrontUrl: web.url,
   });
 }

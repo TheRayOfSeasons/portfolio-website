@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-restricted-syntax": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "max-classes-per-file": "off",
+    "no-plusplus": "off",
+    "no-continue": "off",
+    "no-param-reassign": "off"
+  }
+}
