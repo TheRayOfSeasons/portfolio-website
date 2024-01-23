@@ -4,12 +4,23 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vite --host",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview --host",
+    "start": "vite serve"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "cssnano": "^6.0.3",
+    "postcss": "^8.4.33",
+    "sass": "^1.70.0",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-nunjucks": "^0.2.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "three": "^0.160.1"
   }
 }
