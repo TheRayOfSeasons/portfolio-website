@@ -11,7 +11,7 @@
     "remove": "sst remove",
     "console": "sst console",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint \"*.ts\" --fix"
+    "lint": "eslint . --fix --ext .js,.ts,.cjs"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
