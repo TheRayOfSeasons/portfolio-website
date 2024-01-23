@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "if [ -z ${SKIP_HUSKY} ]; then husky install && npx husky add .husky/pre-commit \"npx lint-staged\"; fi",
     "dev": "sst dev",
     "build": "sst build",
     "deploy": "sst deploy",
