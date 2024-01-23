@@ -1,15 +1,15 @@
 import { type SSTConfig } from 'sst';
 // eslint-disable-next-line import/no-unresolved
-import { API } from './stacks/MyStack';
+import { Frontend } from './stacks/Frontend';
 
 export default {
   config() {
     return {
-      name: 'ray-portfolio',
-      region: 'ap-southeast-1',
+      name: process.env.PROJECT_NAME || 'ray-portfolio',
+      region: process.env.REGION || 'ap-southeast-1',
     };
   },
   stacks(app) {
-    app.stack(API);
+    app.stack(Frontend);
   },
 } satisfies SSTConfig;

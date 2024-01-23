@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { StackContext, StaticSite } from 'sst/constructs';
 
-export function API({ stack }: StackContext) {
+export function Frontend({ stack }: StackContext) {
   const web = new StaticSite(stack, 'web', {
     path: 'packages/frontend',
     buildOutput: 'dist',
