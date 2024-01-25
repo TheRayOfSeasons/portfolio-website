@@ -8,15 +8,45 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+
 <div class="relative h-screen">
   <div class="absolute h-full w-full flex flex-col justify-center items-center z-[2]">
     <div class="absolute h-[300px] w-[500px] light-gradient"></div>
   </div>
-  <div class="absolute w-full h-full flex flex-col justify-center justify-center items-center z-[1]">
+  <canvas id="hero" class="w-full h-full"></canvas>
+  <!-- <div class="absolute w-full h-full flex flex-col justify-center justify-center items-center z-[1]">
     <div class="p-4">
       <h1 class="text-[5rem] tracking-[0.25rem] font-bold text-gold leading-[6rem]">Ray Lawrence Henri Sison</h1>
       <h2 class="text-2xl tracking-[1rem] text-white font-thin">Software Engineer</h2>
     </div>
+  </div> -->
+</div>
+
+
+<div class="flex flex-row justify-center my-10 bg-black">
+  <div class="mx-2">
+    <div class="mx-auto w-[50px] h-[50px] bg-white rounded-full"></div>
+    <div class="text-center text-white mt-4">White</div>
+  </div>
+  <div class="mx-2">
+    <div class="mx-auto w-[50px] h-[50px] bg-navy rounded-full"></div>
+    <div class="text-center text-white mt-4">navy</div>
+  </div>
+  <div class="mx-2">
+    <div class="mx-auto w-[50px] h-[50px] bg-burgundy rounded-full"></div>
+    <div class="text-center text-white mt-4">burgundy</div>
+  </div>
+  <div class="mx-2">
+    <div class="mx-auto w-[50px] h-[50px] bg-emerald rounded-full"></div>
+    <div class="text-center text-white mt-4">emerald</div>
+  </div>
+  <div class="mx-2">
+    <div class="mx-auto w-[50px] h-[50px] bg-gold rounded-full"></div>
+    <div class="text-center text-white mt-4">gold</div>
+  </div>
+  <div class="mx-2">
+    <div class="mx-auto w-[50px] h-[50px] bg-charcoal rounded-full"></div>
+    <div class="text-center text-white mt-4">charcoal</div>
   </div>
 </div>
 {% endblock content %}

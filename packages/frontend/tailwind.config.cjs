@@ -17,9 +17,12 @@ module.exports = {
     extend: {
       colors: {
         'matte-black': '#28282B',
-        'gold': '#D4AF37',
-        'white': '#F7F7F7',
-        'teal': '#1C8EA4',
+        'white': '#FFFFFF',
+        'navy': '#001F3F',
+        'burgundy': '#800020',
+        'emerald': '#50C878',
+        'gold': '#FFD700',
+        'charcoal': '#333333',
       },
       listStyleType: {
         roman: 'upper-roman',
