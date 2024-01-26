@@ -22,7 +22,7 @@ class MeshRenderer extends MonoBehaviour {
 
   start() {
     const { isWebGL2 } = this?.scene?.renderer?.capabilities as THREE.WebGLCapabilities;
-    const commonMaterialOptions = {
+    const commonMaterialOptions: THREE.MeshPhysicalMaterialParameters = {
       color: '#ffffff',
       thickness: 0.001,
       roughness: 0.007,

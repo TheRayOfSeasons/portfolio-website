@@ -242,7 +242,6 @@ export const ThreeAnimations = {
    * NOTE: Canvas size is dependent on the parent's size.
    */
   init: (args: ActiveRenderConstructorArgs) => {
-    console.log(args);
     if (!args.canvas) {
       if (!args.options) {
         return;

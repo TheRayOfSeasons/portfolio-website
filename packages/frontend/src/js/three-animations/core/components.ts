@@ -145,8 +145,8 @@ export class MonoBehaviour extends Behaviour implements IMonoBehaviour {
     this.scene = scene;
   }
 
-  getComponent(type: string): MonoBehaviour {
-    const result = this.parentBehaviour.components[type];
+  getComponent<T = MonoBehaviour>(type: string): T {
+    const result = this.parentBehaviour.components[type] as T;
     return result;
   }
 }
