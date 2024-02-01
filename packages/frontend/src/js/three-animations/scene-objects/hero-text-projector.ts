@@ -29,6 +29,7 @@ class TextureRenderer extends CanvasBehaviour {
       return;
     }
     this.context.beginPath();
+    this.draw();
   }
 
   clear() {
@@ -61,15 +62,20 @@ class TextureRenderer extends CanvasBehaviour {
     if (!this.canvas) {
       return;
     }
-    this.context.fillStyle = 'white';
-    this.context.font = `600 64pt Arial`;
-    const text = 'Hi there!';
-    const width = this.context.measureText(text).width;
-    this.context.fillText(text, -(width / 2), 0, width);
-  }
-
-  update() {
-    this.draw();
+    (() => {
+      this.context.fillStyle = '#ffb800';
+      this.context.font = `600 64pt Arial`;
+      const text = 'Ray Lawrence Henri Sison';
+      const width = this.context.measureText(text).width;
+      this.context.fillText(text, -(width / 2), 0, width);
+    })();
+    (() => {
+      this.context.fillStyle = 'white';
+      this.context.font = `300 24pt Arial`;
+      const text = 'SOFTWARE ENGINEER';
+      const width = this.context.measureText(text).width;
+      this.context.fillText(text, -(width / 2), 64, width);
+    })();
   }
 }
 

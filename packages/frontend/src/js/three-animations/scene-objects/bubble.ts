@@ -1,7 +1,5 @@
 import GSAP from 'gsap';
 import * as THREE from 'three';
-// @ts-ignore
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { MonoBehaviour, SceneObject } from '../core/components';
 import { ShaderUtils } from '../core/utils';
 
@@ -16,6 +14,11 @@ class MeshRenderer extends MonoBehaviour {
       min: 0.8,
       max: 2.0,
       current: 0.8,
+    },
+    strength: {
+      min: 1.0,
+      max: 3.0,
+      current: 1.0,
     },
     timeScale: 0.00035,
   };
@@ -37,14 +40,14 @@ class MeshRenderer extends MonoBehaviour {
       shader.uniforms.uFrequency = { value: 2.4 };
       shader.uniforms.uAmplitude = { value: 0.5 };
       shader.uniforms.uDensity = { value: this.parameters.speed.min };
-      shader.uniforms.uStrength = { value: 1.8 };
+      shader.uniforms.uStrength = { value: this.parameters.strength.min };
       shader.uniforms.uDeepPurple = { value: 1 };
       shader.uniforms.uOpacity = { value: 0.1 };
       shader.uniforms.uTime = { value: 0 };
       shader.uniforms.uFresnelIntensity = { value: 2 };
       shader.uniforms.uCentralBrightness = { value: 0.075 };
-      shader.uniforms.uDepthColor = { value: new THREE.Color('#0458FF') };
-      shader.uniforms.uSurfaceColor = { value: new THREE.Color('#F20089') };
+      shader.uniforms.uDepthColor = { value: new THREE.Color('#d89b00') };
+      shader.uniforms.uSurfaceColor = { value: new THREE.Color('#0022d2') };
       shader.vertexShader = shader.vertexShader.replace('}', `
         float distortion = (pnoise(normal * uDensity + uTime, vec3(10.)) * uStrength);
         vec3 pos = position + (normal * distortion);
@@ -79,7 +82,7 @@ class MeshRenderer extends MonoBehaviour {
         float distort = vDistortion * 3.;
 
         vec3 brightness = vec3(.1, .1, .9);
-        vec3 contrast = vec3(.3, .3, .3);
+        vec3 contrast = vec3(.3, .9, .3);
         vec3 oscilation = vec3(.5, .5, .9);
         vec3 phase = vec3(.9, .1, .8);
 
@@ -88,19 +91,19 @@ class MeshRenderer extends MonoBehaviour {
         float fresnelValue = fresnel();
 
         vec3 finalColor = mix(uDepthColor, uSurfaceColor, vDistortion);
-        float opacity = clamp(finalColor.r + finalColor.g + finalColor.b, 0.0, 1.0);
         vec4 compiledColor = vec4(finalColor, opacity);
-        compiledColor += vec4(uSurfaceColor * fresnelValue, min(uOpacity, 1.));
+        vec3 fresneledColor = uSurfaceColor * fresnelValue;
+        float minOpacity = min(uOpacity, 1.);
+        compiledColor += vec4(fresneledColor, minOpacity);
 
         float multiplier = vElevation * uCentralBrightness;
         gl_FragColor += vec4(compiledColor.r * multiplier, compiledColor.g * multiplier, compiledColor.b * multiplier, 0.0);
 
         float t = (compiledColor.r + compiledColor.g + compiledColor.b) / 3.0;
-        finalColor = mix(uDepthColor, uSurfaceColor, vDistortion);
         finalColor *= fresnelValue;
-        opacity = clamp(finalColor.r + finalColor.g + finalColor.b, 0.0, 1.0);
+        float opacity = clamp(finalColor.r + finalColor.g + finalColor.b, 0.0, 1.0);
         compiledColor = vec4(finalColor, opacity);
-        compiledColor += vec4(uSurfaceColor * fresnelValue, min(uOpacity, 1.));
+        compiledColor += vec4(fresneledColor, minOpacity);
 
         gl_FragColor += mix(gl_FragColor, compiledColor, t);
       }`);
@@ -139,30 +142,39 @@ class MeshRenderer extends MonoBehaviour {
 
     this.group = new THREE.Group();
 
-    const loader = new GLTFLoader();
+    const geometry = new THREE.IcosahedronGeometry(10, 9);
+    const mesh = new THREE.Mesh(geometry, material);
+    this.group.add(mesh);
 
-    // The bubble is not really a sphere. It's rather similar to an M&M.
-    // Such a custom geometry is needed to reduce the distortion done
-    // by the refraction.
-    loader.load('/assets/hero/flat-bubble.glb', (object: any) => {
-      object.scene.traverse((child: any) => {
-        if (child.isMesh) {
-          child.material = material;
-          if (this.group) {
-            this.group.add(child);
-          }
-        }
-      });
-    });
+    const leash = new THREE.Object3D();
+    this.group.add(leash);
 
     let timer: NodeJS.Timeout;
-    window.addEventListener('mousemove', () => {
+    const mouse = new THREE.Vector2();
+    window.addEventListener('mousemove', (event) => {
       if (timer) {
         clearTimeout(timer);
       }
       GSAP.to(this.parameters.speed, { current: this.parameters.speed.max, duration: 2 });
+      GSAP.to(this.parameters.strength, { current: this.parameters.strength.max, duration: 2 });
+      const camera = this.scene.currentCamera;
+      if (camera) {
+        mouse.x = (event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight ) * 2 + 1;
+        const vector = new THREE.Vector3(mouse.x, mouse.y, 0);
+        vector.unproject(camera);
+        vector.sub(camera.position);
+        const distance = -camera.position.z / vector.z;
+        leash.position.copy(camera.position).add(vector.multiplyScalar(distance));
+        GSAP.to(mesh.position, {
+          x: leash.position.x,
+          y: THREE.MathUtils.clamp(leash.position.y, -2, 5),
+          duration: 2,
+        });
+      }
       timer = setTimeout(() => {
         GSAP.to(this.parameters.speed, { current: this.parameters.speed.min, duration: 2 });
+        GSAP.to(this.parameters.strength, { current: this.parameters.strength.min, duration: 2 });
       }, 100);
     });
   }
@@ -172,6 +184,7 @@ class MeshRenderer extends MonoBehaviour {
     if (this.shader) {
       this.shader.uniforms.uTime.value = time * this.parameters.timeScale;
       this.shader.uniforms.uDensity.value = this.parameters.speed.current;
+      this.shader.uniforms.uStrength.value = this.parameters.strength.current;
     }
   }
 
