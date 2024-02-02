@@ -5,9 +5,42 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { MonoBehaviour, SceneObject } from '../core/components';
 import { ShaderUtils } from '../core/utils';
 
-class MeshRenderer extends MonoBehaviour {
+class LeashSource extends MonoBehaviour {
+  object: THREE.Object3D;
+  mouse: THREE.Vector2;
+  vector: THREE.Vector3;
+
+  constructor(args: any) {
+    super(args);
+    this.object = new THREE.Object3D();
+    this.mouse = new THREE.Vector2();
+    this.vector = new THREE.Vector3();
+  }
+
+  awake() {
+    window.addEventListener('mousemove', (event) => {
+      const camera = this.scene.currentCamera;
+      if (!camera) {
+        return;
+      }
+      this.mouse.x = (event.clientX / window.innerWidth ) * 2 - 1;
+      this.mouse.y = -(event.clientY / window.innerHeight ) * 2 + 1;
+      this.vector.set(this.mouse.x, this.mouse.y, 0);
+      this.vector.unproject(camera);
+      this.vector.sub(camera.position);
+      const distance = -camera.position.z / this.vector.z;
+      this.object.position.copy(camera.position).add(this.vector.multiplyScalar(distance));
+    });
+  }
+
+  exportAsSceneObject(): THREE.Object3D<THREE.Object3DEventMap> {
+    return this.object;
+  }
+}
+
+class MaterialManager extends MonoBehaviour {
   shader?: THREE.WebGLProgramParametersWithUniforms;
-  group?: THREE.Group;
+  material: THREE.MeshPhysicalMaterial;
 
   parameters = {
     timeout: 100,
@@ -25,7 +58,8 @@ class MeshRenderer extends MonoBehaviour {
     timeScale: 0.00035,
   };
 
-  start() {
+  constructor(args: any) {
+    super(args);
     const { isWebGL2 } = this?.scene?.renderer?.capabilities as THREE.WebGLCapabilities;
     const commonMaterialOptions: THREE.MeshPhysicalMaterialParameters = {
       color: '#ffffff',
@@ -141,52 +175,16 @@ class MeshRenderer extends MonoBehaviour {
       `);
       this.shader = shader;
     };
-
-    this.group = new THREE.Group();
-
-    // The bubble is not really a sphere. It's rather similar to an M&M.
-    // Such a custom geometry is needed to reduce the distortion done
-    // by the refraction.
-    let mesh: THREE.Mesh;
-    const loader = new GLTFLoader(this.scene.loadingManager);
-    loader.load('/assets/hero/flat-bubble.glb', (object: any) => {
-      object.scene.traverse((child: THREE.Mesh) => {
-        if (child.isMesh) {
-          child.material = material;
-          mesh = child;
-          if (this.group) {
-            this.group.add(child);
-          }
-        }
-      });
-    });
-
-    const leash = new THREE.Object3D();
-    this.group.add(leash);
+    this.material = material;
 
     let timer: NodeJS.Timeout;
-    const mouse = new THREE.Vector2();
-    window.addEventListener('mousemove', (event) => {
+    window.addEventListener('mousemove', () => {
       if (timer) {
         clearTimeout(timer);
       }
       GSAP.to(this.parameters.speed, { current: this.parameters.speed.max, duration: 2 });
       GSAP.to(this.parameters.strength, { current: this.parameters.strength.max, duration: 2 });
-      const camera = this.scene.currentCamera;
-      if (camera && mesh) {
-        mouse.x = (event.clientX / window.innerWidth ) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight ) * 2 + 1;
-        const vector = new THREE.Vector3(mouse.x, mouse.y, 0);
-        vector.unproject(camera);
-        vector.sub(camera.position);
-        const distance = -camera.position.z / vector.z;
-        leash.position.copy(camera.position).add(vector.multiplyScalar(distance));
-        GSAP.to(mesh.position, {
-          x: leash.position.x,
-          y: THREE.MathUtils.clamp(leash.position.y, -2, 5),
-          duration: 2,
-        });
-      }
+
       timer = setTimeout(() => {
         GSAP.to(this.parameters.speed, { current: this.parameters.speed.min, duration: 2 });
         GSAP.to(this.parameters.strength, { current: this.parameters.strength.min, duration: 2 });
@@ -195,12 +193,51 @@ class MeshRenderer extends MonoBehaviour {
   }
 
   update(time: number) {
-    if (!this.group?.visible) { return; }
-    if (this.shader) {
-      this.shader.uniforms.uTime.value = time * this.parameters.timeScale;
-      this.shader.uniforms.uDensity.value = this.parameters.speed.current;
-      this.shader.uniforms.uStrength.value = this.parameters.strength.current;
+    if (!this.shader) {
+      return;
     }
+    this.shader.uniforms.uTime.value = time * this.parameters.timeScale;
+    this.shader.uniforms.uDensity.value = this.parameters.speed.current;
+    this.shader.uniforms.uStrength.value = this.parameters.strength.current;
+  }
+}
+
+class MeshRenderer extends MonoBehaviour {
+  group: THREE.Group;
+  loader: GLTFLoader;
+
+  constructor(args: any) {
+    super(args);
+    this.group = new THREE.Group();
+    this.loader = new GLTFLoader(this.scene.loadingManager);
+  }
+
+  start() {
+    const { material } = this.getComponent<MaterialManager>('MaterialManager');
+
+    // The bubble is not really a sphere. It's rather similar to an M&M.
+    // Such a custom geometry is needed to reduce the distortion done
+    // by the refraction.
+    this.loader.load('/assets/hero/flat-bubble.glb', (object: any) => {
+      object.scene.traverse((child: THREE.Mesh) => {
+        if (child.isMesh) {
+          child.material = material;
+          if (this.group) {
+            this.group.add(child);
+          }
+        }
+      });
+    });
+
+    const leash = this.getComponent<LeashSource>('LeashSource');
+
+    window.addEventListener('mousemove', () => {
+      GSAP.to(this.group.position, {
+        x: leash.object.position.x,
+        y: THREE.MathUtils.clamp(leash.object.position.y, -2, 5),
+        duration: 2,
+      });
+    });
   }
 
   onViewEnter() {
@@ -223,5 +260,7 @@ class MeshRenderer extends MonoBehaviour {
 export class Bubble extends SceneObject {
   monobehaviours = {
     MeshRenderer,
+    MaterialManager,
+    LeashSource,
   };
 }
