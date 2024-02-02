@@ -8,21 +8,13 @@
   background-repeat: no-repeat;
   opacity: 0.2;
 }
-.a {
-  color: #4169E1; color: #001F3F;
-}
-.a {
-  color: #800000; color: #800020;
-}
-.a {
-  color: #008080; color: #50C878;
-}
-.a {
-  color: #FFD700; color: #FFD700;
-}
-.a {
-  color: #708090; color: #333333;
-}
-.a {
-  color: #FFF5E1; color: #FFFFFF;
+
+.curtain {
+  @apply absolute w-full h-full bg-charcoal top-0 left-0;
+  transform: translateX(0%);
+  transition: transform 0.3s;
+
+  &.active {
+    transform: translateX(100%);
+  }
 }

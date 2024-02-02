@@ -1,5 +1,7 @@
 import GSAP from 'gsap';
 import * as THREE from 'three';
+// @ts-ignore
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { MonoBehaviour, SceneObject } from '../core/components';
 import { ShaderUtils } from '../core/utils';
 
@@ -142,9 +144,22 @@ class MeshRenderer extends MonoBehaviour {
 
     this.group = new THREE.Group();
 
-    const geometry = new THREE.IcosahedronGeometry(10, 9);
-    const mesh = new THREE.Mesh(geometry, material);
-    this.group.add(mesh);
+    // The bubble is not really a sphere. It's rather similar to an M&M.
+    // Such a custom geometry is needed to reduce the distortion done
+    // by the refraction.
+    let mesh: THREE.Mesh;
+    const loader = new GLTFLoader(this.scene.loadingManager);
+    loader.load('/assets/hero/flat-bubble.glb', (object: any) => {
+      object.scene.traverse((child: THREE.Mesh) => {
+        if (child.isMesh) {
+          child.material = material;
+          mesh = child;
+          if (this.group) {
+            this.group.add(child);
+          }
+        }
+      });
+    });
 
     const leash = new THREE.Object3D();
     this.group.add(leash);
@@ -158,7 +173,7 @@ class MeshRenderer extends MonoBehaviour {
       GSAP.to(this.parameters.speed, { current: this.parameters.speed.max, duration: 2 });
       GSAP.to(this.parameters.strength, { current: this.parameters.strength.max, duration: 2 });
       const camera = this.scene.currentCamera;
-      if (camera) {
+      if (camera && mesh) {
         mouse.x = (event.clientX / window.innerWidth ) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight ) * 2 + 1;
         const vector = new THREE.Vector3(mouse.x, mouse.y, 0);

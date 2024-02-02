@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 import {
-  Camera, PerspectiveCamera, Scene, WebGLRenderer,
+  Camera, LoadingManager, PerspectiveCamera, Scene, WebGLRenderer,
 } from 'three';
 import { IInteractiveScene, ISceneObject } from './types';
 import { SceneObject } from './components';
@@ -12,6 +12,7 @@ export class InteractiveScene implements IInteractiveScene {
   renderer?: WebGLRenderer;
   scene?: Scene;
   currentCamera?: Camera;
+  loadingManager: LoadingManager;
 
   sceneObjects: {[key: string]: typeof SceneObject} = {};
 
@@ -32,10 +33,11 @@ export class InteractiveScene implements IInteractiveScene {
    */
   defaultCamera = 'Main';
 
-  constructor(canvas: HTMLCanvasElement, renderer: WebGLRenderer) {
+  constructor(canvas: HTMLCanvasElement, renderer: WebGLRenderer, loadingManager: LoadingManager) {
     this.canvas = canvas;
     this.renderer = renderer;
     this.scene = new Scene();
+    this.loadingManager = loadingManager;
     this.modifyScene(this.scene);
   }
 

@@ -1,8 +1,8 @@
 import {
   Camera,
+  LoadingManager,
   Group,
   Scene,
-  Object3D,
   Object3DEventMap,
   WebGLRenderer,
 } from 'three';
@@ -99,6 +99,7 @@ export interface IInteractiveScene extends IBehaviour {
   renderer?: WebGLRenderer;
   scene?: Scene;
   currentCamera?: Camera;
+  loadingManager: LoadingManager;
 
   /**
    * Used for referencing SceneObject instances from outside.

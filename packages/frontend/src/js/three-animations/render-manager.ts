@@ -1,6 +1,12 @@
 // @ts-ignore
 import Stats from 'stats-js';
-import { Clock, PerspectiveCamera, WebGLRenderer, WebGLRendererParameters } from 'three';
+import {
+  Clock,
+  LoadingManager,
+  PerspectiveCamera,
+  WebGLRenderer,
+  WebGLRendererParameters,
+} from 'three';
 import { observer } from '../commons/observer';
 // eslint-disable-next-line no-unused-vars
 import { InteractiveScene } from './core/scene-management';
@@ -88,7 +94,11 @@ const handleAnimation = () => {
 };
 handleAnimation();
 
-type SceneClass = { new(canvas: HTMLCanvasElement, renderer: WebGLRenderer): InteractiveScene };
+type SceneClass = { new(
+  canvas: HTMLCanvasElement,
+  renderer: WebGLRenderer,
+  loadingManager: LoadingManager,
+): InteractiveScene };
 
 interface ActiveRenderConstructorArgs {
   name: string
@@ -116,6 +126,11 @@ interface ActiveRenderConstructorArgs {
    * Defaults as the same canvas received.
    */
   observerElement?: HTMLElement | null
+}
+
+const loadingManager = new LoadingManager();
+loadingManager.onLoad = () => {
+  ThreeAnimations.onLoadFn();
 }
 
 /** Class containing the configurations of one render. */
@@ -171,7 +186,7 @@ class ActiveRender {
     );
     const SceneClass = sceneClass;
 
-    this.scene = new SceneClass(canvas, this.renderer);
+    this.scene = new SceneClass(canvas, this.renderer, loadingManager);
     this.scene.awake();
     this.scene.start();
 
@@ -234,11 +249,14 @@ class ActiveRender {
 }
 
 export const ThreeAnimations = {
+  loaded: false,
+  loadingManager,
+  onLoadFn: () => {},
   /**
    * Initializes an InteractiveScene.
    * NOTE: Canvas size is dependent on the parent's size.
    */
-  init: (args: ActiveRenderConstructorArgs) => {
+  init(args: ActiveRenderConstructorArgs) {
     if (!args.canvas) {
       if (!args.options) {
         return;
@@ -255,4 +273,10 @@ export const ThreeAnimations = {
     });
     keyedActiveRenders[name] = activeRender;
   },
+  onLoad(callback: () => void) {
+    this.onLoadFn = () => {
+      this.loaded = true;
+      callback();
+    };
+  }
 };
