@@ -1,23 +1,7 @@
 import { BubbleScene } from './three-animations/scenes/bubble-scene';
 import { ThreeAnimations } from './three-animations/render-manager';
+import { ElementActivator } from './commons/element-activator';
 
-
-class ElementActivator {
-  element: Element;
-  flag = 'active';
-
-  constructor(element: Element) {
-    this.element = element;
-  }
-
-  setActive(toggle: boolean) {
-    if (toggle) {
-      this.element.classList.add(this.flag);
-    } else {
-      this.element.classList.remove(this.flag);
-    }
-  }
-}
 
 ThreeAnimations.onLoad(() => {
   setTimeout(() => {
