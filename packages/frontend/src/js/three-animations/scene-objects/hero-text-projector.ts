@@ -52,7 +52,7 @@ class TextureRenderer extends CanvasBehaviour {
     if (!this.canvas) {
       return;
     }
-    this.context?.translate(this.canvas.width / 2, this.canvas.height / 2);
+    this.context?.translate(this.canvas.width / 2, this.canvas.height - (this.canvas.height / 8));
   }
 
   draw() {
@@ -99,6 +99,16 @@ class MeshRenderer extends MonoBehaviour {
     }
     const material = new THREE.ShaderMaterial({
       uniforms: {
+        uDetail: { value: 1, },
+        uFlare: { value: 1, },
+        uTime: { value: 0, },
+        uTimeScale: { value: 0.005 },
+        uStarMinSize: { value: 0.1, },
+        uStarMaxSize: { value: 0.5, },
+        uRayMinSize: { value: 500, },
+        uRayMaxSize: { value: 550, },
+        uZoom: { value: 40, },
+        uColorA: { value: new THREE.Color('#0acdef') },
         uTexture: { value: this.texture },
         uResolution: {
           value: new THREE.Vector2(
@@ -117,17 +127,99 @@ class MeshRenderer extends MonoBehaviour {
         }
       `,
       fragmentShader: `
+        #define PI 3.1415
+
+        uniform float uDetail;
+        uniform float uFlare;
+        uniform float uStarMinSize;
+        uniform float uStarMaxSize;
+        uniform float uRayMinSize;
+        uniform float uRayMaxSize;
+        uniform float uTime;
+        uniform float uTimeScale;
+        uniform float uZoom;
         uniform sampler2D uTexture;
         uniform vec2 uResolution;
+        uniform vec3 uColorA;
 
         varying vec2 vUv;
+
+        mat2 rotate(float angle)
+        {
+          float s = sin(angle);
+          float c = cos(angle);
+          return mat2(c, -s, s, c);
+        }
+
+        float hash21(vec2 p)
+        {
+          p = fract(p * vec2(123.34, 456.21));
+          p += dot(p, p + 45.32);
+          return fract(p.x * p.y);
+        }
+
+        vec4 star(vec2 uv, float flare, float noise)
+        {
+          vec4 color = vec4(0.0, 0.0, 0.0, 1.0);
+          float scaledTime = uTime * uTimeScale * noise;
+
+          // circle
+          float diameter = length(uv);
+          float size = mix(uStarMinSize, uStarMaxSize, sin(scaledTime) + 1.0);
+          float circle = size / diameter;
+          color += circle;
+
+          // rays
+          float twinklingRate = sin(uTime * 0.00015) + 1.0;
+          float raySize = mix(uRayMinSize, uRayMaxSize, twinklingRate);
+
+          // ray 1
+          float rays = max(0.0, 1.0 - abs(uv.x * uv.y * raySize));
+          color += rays * flare;
+
+          // ray 2
+          vec2 rotatedUv = uv * rotate(PI / 4.0);
+          rays = max(0.0, 1.0 - abs(rotatedUv.x * rotatedUv.y * raySize));
+          color += rays * flare;
+
+          color *= smoothstep(1.0, 0.2, diameter);
+          return color;
+        }
+
+        vec4 pattern()
+        {
+          vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution.yy) / uResolution.yy;
+          uv *= uZoom;
+          vec2 grid = fract(uv) - 0.5;
+          vec2 id = floor(uv);
+
+          vec4 color = vec4(0.0);
+          float gridDetail = uDetail * 9.0;
+          // add contribution of colors from neigboring grids
+          for (float y = -uDetail; y <= uDetail; y++)
+          {
+            for (float x = -uDetail; x <= uDetail; x++)
+            {
+              vec2 offset = vec2(x, y);
+              float noise = hash21(id + offset); // random between 0 and 1
+              vec2 starPosition = vec2(noise, fract(noise * 34.0)) - 0.5;
+              vec4 star = star(grid - offset - starPosition, uFlare, fract(noise * 175.29)) / gridDetail;
+              float size = fract(noise * 345.32);
+              color += star * size;
+            }
+          }
+
+          vec4 transparency = vec4(0.0);
+          vec2 gradientUv = gl_FragCoord.xy / uResolution;
+          return mix(transparency, color, gradientUv.y - 0.05);
+        }
 
         void main()
         {
           vec2 uv = gl_FragCoord.xy / uResolution;
           vec4 color = texture2D(uTexture, uv);
-          if (length(color.rgb) <= 0.0) discard;
-          gl_FragColor = color;
+
+          gl_FragColor = length(color.rgb) <= 0.0 ? pattern() : color;
         }
       `,
       blending: THREE.AdditiveBlending,
@@ -152,11 +244,14 @@ class MeshRenderer extends MonoBehaviour {
     this.mesh = new THREE.Mesh(geometry, this.material);
   }
 
-  update() {
+  update(time: number) {
     if (this.textureIsActive) {
       if (this.texture?.needsUpdate) {
         this.texture.needsUpdate = true;
       }
+    }
+    if (this.material?.uniforms) {
+      this.material.uniforms.uTime.value = time;
     }
   }
 
