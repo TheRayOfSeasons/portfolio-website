@@ -45,10 +45,7 @@ observer.subscribe((entry) => {
   if (!name) {
     return;
   }
-  /**
-   * @type {ActiveRender}
-   */
-  const activeRender = keyedActiveRenders[name];
+  const activeRender: ActiveRender = keyedActiveRenders[name];
   const ratio = entry.intersectionRatio;
   if (ratio > 0) {
     activeRender.onViewEnter();
