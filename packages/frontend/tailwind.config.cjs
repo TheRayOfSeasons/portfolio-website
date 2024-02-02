@@ -15,6 +15,11 @@ module.exports = {
       ...tailwindcss.screens,
     },
     extend: {
+      fontFamily: {
+        inter: ['Inter Tight', 'sans-serif'],
+        archivo: ['Archivo Narrow', 'sans-serif'],
+        julius: ['Julius Sans One', 'sans-serif'],
+      },
       colors: {
         'matte-black': '#28282B',
         'white': '#FFFFFF',

@@ -16,6 +16,7 @@ class CanvasBehaviour extends MonoBehaviour {
 
 class TextureRenderer extends CanvasBehaviour {
   elementId = 'hero-text';
+  redraw = true;
 
   awake() {
     this.canvas = document.getElementById(this.elementId) as HTMLCanvasElement;
@@ -64,18 +65,24 @@ class TextureRenderer extends CanvasBehaviour {
     }
     (() => {
       this.context.fillStyle = '#ffb800';
-      this.context.font = `600 64pt Arial`;
-      const text = 'Ray Lawrence Henri Sison';
+      this.context.font = `600 64pt Julius Sans One`;
+      const text = 'Ray Sison';
       const width = this.context.measureText(text).width;
       this.context.fillText(text, -(width / 2), 0, width);
     })();
     (() => {
       this.context.fillStyle = 'white';
-      this.context.font = `300 24pt Arial`;
+      this.context.font = `300 24pt Archivo Narrow`;
       const text = 'SOFTWARE ENGINEER';
       const width = this.context.measureText(text).width;
       this.context.fillText(text, -(width / 2), 64, width);
     })();
+  }
+
+  resize() {
+    this.updateCanvasSize();
+    this.adaptCoordinates();
+    this.draw();
   }
 }
 
