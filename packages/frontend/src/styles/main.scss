@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './animations';
+
 .light-gradient {
-  // border: 1px solid white;
   background: radial-gradient(farthest-side at center center, #aaa 1%, transparent 100%); 
   background-repeat: no-repeat;
   opacity: 0.2;

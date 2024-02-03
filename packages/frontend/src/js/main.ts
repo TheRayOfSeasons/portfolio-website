@@ -1,7 +1,7 @@
 import WebFont from 'webfontloader';
 import { BubbleScene } from './three-animations/scenes/bubble-scene';
 import { ThreeAnimations } from './three-animations/render-manager';
-import { ElementActivator } from './commons/element-activator';
+import { ElementActivator, visibilityActivator } from './commons/element-activator';
 
 ThreeAnimations.onLoad(() => {
   setTimeout(() => {
@@ -30,3 +30,8 @@ WebFont.load({
     }
   }
 });
+
+const animatedElements = document.querySelectorAll('.animated');
+for (const element of [...animatedElements]) {
+  visibilityActivator.observe(element);
+}

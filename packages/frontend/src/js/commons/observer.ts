@@ -7,25 +7,20 @@ type ObserverCallback = {(entry: IntersectionObserverEntry): void};
  * A wrapper class for an IntersectionObserver
  * that handles all intersection callbacks.
  */
-class Observer {
+export class Observer {
   observer: IntersectionObserver;
-
-  options: IntersectionObserverInit = {
-    root: null,
-    rootMargin: '0px',
-    threshold: [0, 1],
-  };
-
+  options: IntersectionObserverInit;
   hooks: ObserverCallback[] = [];
 
-  constructor() {
+  constructor(options: IntersectionObserverInit) {
     this.observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         for (const hook of this.hooks) {
           hook(entry);
         }
       }
-    }, this.options);
+    }, options);
+    this.options = options;
   }
 
   observe(element: Element) {
@@ -49,4 +44,8 @@ class Observer {
   }
 }
 
-export const observer = new Observer();
+export const observer = new Observer({
+  root: null,
+  rootMargin: '0px',
+  threshold: [0, 1],
+});

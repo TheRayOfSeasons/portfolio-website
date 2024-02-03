@@ -1,3 +1,5 @@
+import { Observer } from './observer';
+
 /**
  * Encapsulates logic for activating elements through CSS classes.
  */
@@ -25,3 +27,16 @@ export class ElementActivator {
     this.setActive(false);
   }
 }
+
+export const visibilityActivator = new Observer({
+  root: null,
+  rootMargin: '0px',
+  threshold: [0.2],
+});
+visibilityActivator.subscribe((entry) => {
+  if(entry.intersectionRatio > 0.2) {
+    entry.target.classList.add('active');
+  } else {
+    entry.target.classList.remove('active');
+  }
+});
