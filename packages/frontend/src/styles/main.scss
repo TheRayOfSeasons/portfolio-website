@@ -11,7 +11,7 @@
 }
 
 .curtain {
-  @apply absolute w-full h-full bg-charcoal top-0 left-0;
+  @apply absolute w-full h-full bg-black top-0 left-0;
   transform: translateX(0%);
   transition: transform 0.3s;
 

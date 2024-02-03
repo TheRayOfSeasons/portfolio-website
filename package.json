@@ -17,14 +17,14 @@
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.11.5",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
-    "aws-cdk-lib": "2.110.1",
+    "aws-cdk-lib": "^2.126.0",
     "constructs": "10.3.0",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "sst": "^2.39.6",
+    "sst": "^2.40.1",
     "typescript": "^5.3.3"
   },
   "lint-staged": {

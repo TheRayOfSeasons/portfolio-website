@@ -17,6 +17,20 @@ class CanvasBehaviour extends MonoBehaviour {
 class TextureRenderer extends CanvasBehaviour {
   elementId = 'hero-text';
   redraw = true;
+  fontSizes = {
+    xl: {
+      name: '64pt',
+      title: '32pt',
+    },
+    md: {
+      name: '48pt',
+      title: '24pt',
+    },
+    sm: {
+      name: '32pt',
+      title: '16pt',
+    },
+  }
 
   awake() {
     this.canvas = document.getElementById(this.elementId) as HTMLCanvasElement;
@@ -55,6 +69,17 @@ class TextureRenderer extends CanvasBehaviour {
     this.context?.translate(this.canvas.width / 2, this.canvas.height - (this.canvas.height / 8));
   }
 
+  getFontSize() {
+    const width = window.innerWidth;
+    if (width >= 1024) {
+      return this.fontSizes.xl;
+    }
+    if (width >= 768) {
+      return this.fontSizes.md;
+    }
+    return this.fontSizes.sm;
+  }
+
   draw() {
     this.clear();
     if (!this.context) {
@@ -63,22 +88,26 @@ class TextureRenderer extends CanvasBehaviour {
     if (!this.canvas) {
       return;
     }
+    const { name, title } = this.getFontSize();
     (() => {
       this.context.fillStyle = '#ffb800';
-      this.context.font = `600 64pt Julius Sans One`;
+      this.context.font = `600 ${name} Julius Sans One`;
       const text = 'Ray Sison';
       const width = this.context.measureText(text).width;
       this.context.fillText(text, -(width / 2), 0, width);
     })();
     (() => {
       this.context.fillStyle = 'white';
-      this.context.font = `300 24pt Archivo Narrow`;
+      this.context.font = `300 ${title} Archivo Narrow`;
       const text = 'SOFTWARE ENGINEER';
       const width = this.context.measureText(text).width;
       this.context.fillText(text, -(width / 2), 64, width);
     })();
   }
 
+  update() {
+    this.draw();
+  }
   resize() {
     this.updateCanvasSize();
     this.adaptCoordinates();

@@ -10,8 +10,8 @@ setTimeout(() => {
     activator.setActive(true);
   }
 }, 500);
-ThreeAnimations.onLoad(() => {
-});
+// ThreeAnimations.onLoad(() => {
+// });
 const animations = [
   async () => ThreeAnimations.init({
     name: 'hero',
