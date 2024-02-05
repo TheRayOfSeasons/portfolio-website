@@ -28,6 +28,7 @@ module.exports = {
         'emerald': '#50C878',
         'gold': '#FFD700',
         'charcoal': '#333333',
+        'teal': '#42EFF8',
       },
       listStyleType: {
         roman: 'upper-roman',

@@ -1,0 +1,75 @@
+{% extends "src/templates/base.html" %}
+
+{% set meta = {
+  seo_title: "Music Plane",
+  seo_description: "Welcome!"
+} %}
+
+{% block title %}Music Plane{% endblock title %}
+
+{% block content %}
+  <svg id="sprites" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="caret-right" viewBox="0 0 256 512">
+      <path d="M118.6 105.4l128 127.1C252.9 239.6 256 247.8 256 255.1s-3.125 16.38-9.375 22.63l-128 127.1c-9.156 9.156-22.91 11.9-34.88 6.943S64 396.9 64 383.1V128c0-12.94 7.781-24.62 19.75-29.58S109.5 96.23 118.6 105.4z"/>
+    </symbol>
+    <symbol id="pause" viewBox="0 0 320 512">
+      <path d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"/>
+    </symbol>
+    <symbol id="caret-down" viewBox="0 0 320 512">
+      <path d="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z"/>
+    </symbol>
+    <symbol id="spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+    </symbol>
+  </svg>
+
+  <main>
+    <div class="relative h-screen overflow-hidden">
+      <canvas class="relative w-full h-full z-[0]" id="music-mesh"></canvas>
+      <svg id="spinner" width="32" height="32" class="text-white fill-white absolute top-[1rem] right-[1rem]">
+        <use href="#spinner-icon"></use>
+      </svg>
+      <div class="absolute bottom-0 w-full flex flex-row justify-center">
+        <div class="absolute lg:w-[unset] w-full md:top-[-6rem] top-[-9rem] flex md:flex-row flex-col p-4">
+          <div class="flex flex-row">
+            <div>
+              <button class="border-[5px] border-white p-2 rounded-full w-[64px] h-[64px] cursor-pointer hover:border-teal fill-white hover:fill-teal" type="button" role="button" id="play">
+                <svg class="play-icon" width="16" height="32" style="display: unset;">
+                  <use href="#caret-right"></use>
+                </svg>
+                <svg class="pause-icon" width="16" height="32" style="display: none;">
+                  <use href="#pause"></use>
+                </svg>
+                <svg id="spinner-icon" width="32" height="32" class="infinite-rotation" style="display: none;">
+                  <use href="#spinner"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="md:ml-6 ml-4 flex flex-col justify-center overflow-hidden">
+              <select id="music-selector">
+                <option value="/assets/music/nocturne.mp3">Chopin - Nocturne op.9 No.2</option>
+                <option value="/assets/music/moonlight-sonata.mp3">Beethoven - Moonlight Sonata (1st movement)</option>
+                <option value="/assets/music/mitis-mercy.mp3">MitiS - Mercy (feat. glasscat) | Proximity</option>
+                <option value="/assets/music/mitis-shattered.mp3">MitiS - Shattered (Lyrics) feat. RUNN</option>
+                <option value="/assets/music/twice-what-is-love.mp3">Twice - What is Love?</option>
+                <option value="/assets/music/bol4-to-my-youth.mp3">Bolbbalgan4 볼빨간사춘기  To My Youth 나의 사춘기에</option>
+                <option value="/assets/music/lauv-breathe.mp3">Lauv - Breathe</option>
+              </select>
+            </div>
+          </div>
+          <div class="md:ml-6 md:mt-0 mt-4 flex flex-col justify-center">
+            <div>
+              <label class="text-lg text-white font-archivo" for="invert">Invert?</label>
+              <input type="checkbox" id="invert" name="invert" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+{% endblock content %}
+
+{% block scripts %}
+  <script type="module" src="/js/sound-wave-visualizer-page.ts"></script>
+{% endblock scripts %}

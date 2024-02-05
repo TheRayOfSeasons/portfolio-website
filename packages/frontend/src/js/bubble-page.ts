@@ -13,18 +13,12 @@ ThreeAnimations.onLoad(() => {
   }, 500);
 });
 
-const animations = [
-  async () => ThreeAnimations.init({
-    name: 'hero',
-    canvas: document.getElementById('hero') as HTMLCanvasElement,
-    sceneClass: BubbleScene,
-  }),
-];
+const animate = async () => ThreeAnimations.init({
+  name: 'hero',
+  canvas: document.getElementById('hero') as HTMLCanvasElement,
+  sceneClass: BubbleScene,
+});
 
 loadFonts({
-  active: () => {
-    for (const animate of animations) {
-      animate();
-    }
-  }
+  active: () => animate(),
 });
