@@ -19,6 +19,10 @@ module.exports = {
         inter: ['Inter Tight', 'sans-serif'],
         archivo: ['Archivo Narrow', 'sans-serif'],
         julius: ['Julius Sans One', 'sans-serif'],
+        barlow: ['Barlow', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
+        bebas: ['Bebas Neue', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       colors: {
         'matte-black': '#28282B',
