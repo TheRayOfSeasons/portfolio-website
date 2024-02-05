@@ -66,61 +66,6 @@ export class MeshRenderer extends MonoBehaviour {
       `,
       side: THREE.DoubleSide,
     });
-    // const material = new THREE.ShaderMaterial({
-    //   uniforms: {
-    //     uFrequency: { value: [] },
-    //     uAverageFrequency: { value: 0 },
-    //     uColorA: { value: new THREE.Color('#7f2a91') },
-    //     uColorB: { value: new THREE.Color('#1af5f5') },
-    //     uColorC: { value: new THREE.Color('#f5f373') },
-    //     uColorD: { value: new THREE.Color('#e680d8') },
-    //     uMaxElevation: { value: 1 },
-    //     uInverted: { value: false, }
-    //   },
-    //   // Used string concatenation for a more optimized build.
-    //   vertexShader: '' +
-    //     'uniform float uMaxElevation;' +
-    //     'uniform float[256] uFrequency;' +
-    //     '' +
-    //     'varying float vT;' +
-    //     'varying float vDistanceT;' +
-    //     '' +
-    //     'void main()' +
-    //     '{' +
-    //       'vec4 currentPosition = vec4(position, 1.0);' +
-    //       'float distance = abs(distance(vec2(0.5, 0.5), uv));' +
-    //       'float normalizedDistance = distance / 0.5;' +
-    //       'int index = int(normalizedDistance * 64.0);' +
-    //       'float t = uFrequency[index] / 255.0;' +
-    //       'float elevation = t * uMaxElevation;' +
-    //       'currentPosition.y += smoothstep(0.0, uMaxElevation, elevation);' +
-    //       'gl_Position = projectionMatrix * viewMatrix * modelMatrix * currentPosition;' +
-    //       '' +
-    //       'vT = t;' +
-    //       'vDistanceT = distance / 0.5;' +
-    //     '}',
-    //   fragmentShader: '' +
-    //     'uniform float uAverageFrequency;' +
-    //     'uniform bool uInverted;' +
-    //     'uniform vec3 uColorA;' +
-    //     'uniform vec3 uColorB;' +
-    //     'uniform vec3 uColorC;' +
-    //     'uniform vec3 uColorD;' +
-    //     '' +
-    //     'varying float vT;' +
-    //     'varying float vDistanceT;' +
-    //     '' +
-    //     'void main()' +
-    //     '{' +
-    //       'vec3 color1 = uInverted ? uColorB : uColorC;' +
-    //       'vec3 color2 = uInverted ? uColorC : uColorB;' +
-    //       'vec3 gradientColor1 = mix(color1, color2, vDistanceT);' +
-    //       'vec3 gradientColor2 = mix(gradientColor1, uColorD, uAverageFrequency / 255.0);' +
-    //       'vec3 color = mix(uColorA, gradientColor2, vT);' +
-    //       'gl_FragColor = vec4(color, 1.0);' +
-    //     '}',
-    //   side: THREE.DoubleSide,
-    // });
     return material;
   }
 
