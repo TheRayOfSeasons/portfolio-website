@@ -46,6 +46,9 @@
     <meta property="og:site_name" content="{{ WEBSITE_NAME }}" />
 
     <script type="module" src="/js/head.ts"></script>
+    {% block head_scripts %}
+      <script type="module" src="/js/auto-load-fonts.ts"></script>
+    {% endblock head_scripts %}
   </head>
 
   <body class="bg-black">
@@ -69,6 +72,7 @@
     {% block modals %}
     {% endblock modals %}
 
-    <script type="module" src="/js/main.ts"></script>
+    {% block scripts %}
+    {% endblock scripts %}
   </body>
 </html>

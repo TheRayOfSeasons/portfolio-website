@@ -9,17 +9,28 @@
 
 {% block content %}
 
-<div class="relative h-screen overflow-hidden">
-  <div class="absolute h-full w-full flex flex-col justify-center items-center z-[2]">
-    <div class="absolute h-[300px] w-[500px] light-gradient"></div>
+<div class="relative h-screen overflow-hidden w-full flex flex-row justify-center items-center">
+  <div class="p-20">
+    <h1 class="font-julius text-5xl font-bold text-gold text-center">Ray Lawrence Henri Sison</h1>
+    <h2 class="font-archivo text-2xl text-white text-center">Software Engineer</h2>
+    <div class="mt-16 flex flex-row justify-center">
+      <a class="block portfolio-button" href="/bubble">
+        <div class="portfolio-button__body rounded-lg p-2">
+          <img
+            class="rounded-md"
+            src="/img/bubble-preview.png"
+            alt="bubble"
+            width="200"
+          />
+        </div>
+        <h3 class="text-xl text-white text-center mt-2 font-julius">Bubble</h3>
+      </a>
+    </div>
   </div>
-  <canvas id="hero-text" class="absolute top-0 left-0 w-full h-full z-[3]"></canvas>
-  <canvas id="hero" class="relative w-full h-full z-[4]"></canvas>
-  <div class="curtain z-[5]"></div>
 </div>
 
 <section id="about" class="mt-32 max-w-[1440px] px-20 mx-auto">
-  <div class="w-full flex flex-row">
+  <div class="mt-32 w-full flex flex-row">
     <div class="max-w-[480px] animated fade-slide-in-top">
       <div class="sticky top-[2rem]">
         <h2 class="font-julius text-gold text-3xl font-bold">About Me</h2>
@@ -180,3 +191,7 @@
   </div>
 </section>
 {% endblock content %}
+
+{% block scripts %}
+  <script type="module" src="/js/on-scroll-animations.ts"></script>
+{% endblock scripts %}

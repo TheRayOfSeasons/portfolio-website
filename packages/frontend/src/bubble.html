@@ -1,0 +1,26 @@
+{% extends "src/templates/base.html" %}
+
+{% set meta = {
+  seo_title: "Bubble",
+  seo_description: "Welcome!"
+} %}
+
+{% block title %}Bubble{% endblock title %}
+
+{# empty #}
+{% block head_scripts %}{% endblock head_scripts %}
+
+{% block content %}
+  <div class="relative h-screen overflow-hidden">
+    <div class="absolute h-full w-full flex flex-col justify-center items-center z-[2]">
+      <div class="absolute h-[300px] w-[500px] light-gradient"></div>
+    </div>
+    <canvas id="hero-text" class="absolute top-0 left-0 w-full h-full z-[3]"></canvas>
+    <canvas id="hero" class="relative w-full h-full z-[4]"></canvas>
+    <div class="curtain z-[5]"></div>
+  </div>
+{% endblock content %}
+
+{% block scripts %}
+  <script type="module" src="/js/main.ts"></script>
+{% endblock scripts %}

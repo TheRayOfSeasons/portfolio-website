@@ -1,7 +1,7 @@
-import WebFont from 'webfontloader';
 import { BubbleScene } from './three-animations/scenes/bubble-scene';
 import { ThreeAnimations } from './three-animations/render-manager';
-import { ElementActivator, visibilityActivator } from './commons/element-activator';
+import { ElementActivator } from './commons/element-activator';
+import { loadFonts } from './fonts';
 
 ThreeAnimations.onLoad(() => {
   setTimeout(() => {
@@ -12,6 +12,7 @@ ThreeAnimations.onLoad(() => {
     }
   }, 500);
 });
+
 const animations = [
   async () => ThreeAnimations.init({
     name: 'hero',
@@ -20,18 +21,10 @@ const animations = [
   }),
 ];
 
-WebFont.load({
-  google: {
-    families: ['Inter Tight', 'Archivo Narrow', 'Julius Sans One'],
-  },
+loadFonts({
   active: () => {
     for (const animate of animations) {
       animate();
     }
   }
 });
-
-const animatedElements = document.querySelectorAll('.animated');
-for (const element of [...animatedElements]) {
-  visibilityActivator.observe(element);
-}
