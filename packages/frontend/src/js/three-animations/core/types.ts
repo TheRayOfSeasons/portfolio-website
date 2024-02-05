@@ -43,11 +43,11 @@ export interface IBehaviour {
   onViewLeave?(): void;
 
   /** Whatever this returns will be added to the scene. */
-  exportAsSceneObject?(): any;
+  exportAsEntity?(): any;
 
   /**
    * Whatever this returns will be added to the scene as a group.
-   * NOTE: Currently, this is only used for the SceneObject as a
+   * NOTE: Currently, this is only used for the Entity as a
    * collector of all Monobehaviours under it. Don't use this in
    * any other way unless the abstraction is revised.
    */
@@ -59,7 +59,7 @@ export interface IMonoBehaviourConstructor {
     parentBehaviour,
     scene,
   }: {
-    parentBehaviour: ISceneObject
+    parentBehaviour: IEntity
     scene: IInteractiveScene
   }): IMonoBehaviour
 };
@@ -72,15 +72,15 @@ export interface IMonoBehaviour extends IBehaviour {
   getComponent?(type: string): IMonoBehaviour;
 }
 
-export type ISceneObjectConstructor = {
+export type IEntityConstructor = {
   new ({
     scene,
   }: {
     scene: IInteractiveScene
-  }): ISceneObject
+  }): IEntity
 }
 
-export interface ISceneObject extends IBehaviour {
+export interface IEntity extends IBehaviour {
   /**
    * Used for referencing Monobehaviour instances from other Monobehaviours.
    */
@@ -102,14 +102,14 @@ export interface IInteractiveScene extends IBehaviour {
   loadingManager: LoadingManager;
 
   /**
-   * Used for referencing SceneObject instances from outside.
+   * Used for referencing Entity instances from outside.
    */
-  instances: {[key: string]: ISceneObject};
+  instances: {[key: string]: IEntity};
 
   /**
    * Used for iterating lifecycle Id events for performance.
    */
-  arrayedInstances: ISceneObject[];
+  arrayedInstances: IEntity[];
 
   cameras: {[key: string]: Camera};
 
@@ -119,23 +119,23 @@ export interface IInteractiveScene extends IBehaviour {
   modifyScene?(scene: Scene): void;
 
   /**
-   * Runs after all SceneObjects awake.
+   * Runs after all Entities awake.
    * Can be utilized for setting up postprocessing.
    */
   onSceneAwake?(): void
 
   /**
-   * Runs after all SceneObjects start.
+   * Runs after all Entities start.
    */
   onSceneStart?(): void
 
   /**
-   * Runs before the frame renders all SceneObjects.
+   * Runs before the frame renders all Entities.
    */
   onBeforeFrameRender?(): void
 
   /**
-   * Runs after the frame renders all SceneObjects.
+   * Runs after the frame renders all Entities.
    */
   onAfterRender?(): void
 

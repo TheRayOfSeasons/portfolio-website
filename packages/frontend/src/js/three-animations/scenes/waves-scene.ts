@@ -1,9 +1,9 @@
 import { PerspectiveCamera } from 'three';
 import { InteractiveScene } from "../core/scene-management";
-import { Waves } from '../scene-objects/waves';
+import { Waves } from '../entities/waves';
 
 export class WavesScene extends InteractiveScene {
-  sceneObjects = {
+  entities = {
     Waves,
   };
 

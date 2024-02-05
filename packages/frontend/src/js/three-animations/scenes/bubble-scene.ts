@@ -1,10 +1,10 @@
 import { PerspectiveCamera } from 'three';
 import { InteractiveScene } from '../core/scene-management';
-import { Bubble } from '../scene-objects/bubble';
-import { HeroTextProjector } from '../scene-objects/hero-text-projector';
+import { Bubble } from '../entities/bubble';
+import { HeroTextProjector } from '../entities/hero-text-projector';
 
 export class BubbleScene extends InteractiveScene {
-  sceneObjects = {
+  entities = {
     Bubble,
     HeroTextProjector,
   };

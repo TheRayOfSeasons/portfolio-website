@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { MonoBehaviour, SceneObject } from "../core/components";
+import { MonoBehaviour, Entity } from "../core/components";
 
 class MeshRenderer extends MonoBehaviour {
   material: THREE.ShaderMaterial;
@@ -48,12 +48,12 @@ class MeshRenderer extends MonoBehaviour {
     this.material.uniforms.uTime.value = time;
   }
 
-  exportAsSceneObject(): THREE.Object3D<THREE.Object3DEventMap> {
+  exportAsEntity(): THREE.Object3D<THREE.Object3DEventMap> {
     return this.mesh;
   }
 }
 
-export class Waves extends SceneObject {
+export class Waves extends Entity {
   monobehaviours: Record<string, typeof MonoBehaviour> = {
     MeshRenderer,
   };

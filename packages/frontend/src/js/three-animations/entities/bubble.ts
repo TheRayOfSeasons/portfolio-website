@@ -2,7 +2,7 @@ import GSAP from 'gsap';
 import * as THREE from 'three';
 // @ts-ignore
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { MonoBehaviour, SceneObject } from '../core/components';
+import { MonoBehaviour, Entity } from '../core/components';
 import { ShaderUtils } from '../core/utils';
 
 class LeashSource extends MonoBehaviour {
@@ -33,7 +33,7 @@ class LeashSource extends MonoBehaviour {
     });
   }
 
-  exportAsSceneObject(): THREE.Object3D<THREE.Object3DEventMap> {
+  exportAsEntity(): THREE.Object3D<THREE.Object3DEventMap> {
     return this.object;
   }
 }
@@ -252,12 +252,12 @@ class MeshRenderer extends MonoBehaviour {
     }
   }
 
-  exportAsSceneObject(): any {
+  exportAsEntity(): any {
     return this.group;
   }
 }
 
-export class Bubble extends SceneObject {
+export class Bubble extends Entity {
   monobehaviours = {
     MeshRenderer,
     MaterialManager,

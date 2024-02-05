@@ -3,8 +3,8 @@
 import {
   Camera, LoadingManager, PerspectiveCamera, Scene, WebGLRenderer,
 } from 'three';
-import { IInteractiveScene, ISceneObject } from './types';
-import { SceneObject } from './components';
+import { IInteractiveScene, IEntity } from './types';
+import { Entity } from './components';
 
 /** A class that sets up a scene. */
 export class InteractiveScene implements IInteractiveScene {
@@ -14,17 +14,17 @@ export class InteractiveScene implements IInteractiveScene {
   currentCamera?: Camera;
   loadingManager: LoadingManager;
 
-  sceneObjects: {[key: string]: typeof SceneObject} = {};
+  entities: {[key: string]: typeof Entity} = {};
 
   /**
-   * Used for referencing SceneObject instances from outside.
+   * Used for referencing Entity instances from outside.
    */
-  instances: {[key: string]: ISceneObject} = {};
+  instances: {[key: string]: IEntity} = {};
 
   /**
    * Used for iterating lifecycle based events for performance.
    */
-  arrayedInstances: ISceneObject[] = [];
+  arrayedInstances: IEntity[] = [];
 
   cameras: {[key: string]: Camera} = {};
 
@@ -47,23 +47,23 @@ export class InteractiveScene implements IInteractiveScene {
   modifyScene(scene: Scene) {}
 
   /**
-   * Runs after all SceneObjects awake.
+   * Runs after all Entities awake.
    * Can be utilized for setting up postprocessing.
    */
   onSceneAwake() {}
 
   /**
-   * Runs after all SceneObjects start.
+   * Runs after all Entities start.
    */
   onSceneStart() {}
 
   /**
-   * Runs before the frame renders all SceneObjects.
+   * Runs before the frame renders all Entities.
    */
   onBeforeFrameRender() {}
 
   /**
-   * Runs after the frame renders all SceneObjects.
+   * Runs after the frame renders all Entities.
    */
   onAfterRender() {}
 
@@ -112,8 +112,8 @@ export class InteractiveScene implements IInteractiveScene {
 
   awake() {
     this.setCurrentCamera(this.defaultCamera);
-    for (const [key, SceneObject] of Object.entries(this.sceneObjects)) {
-      const instance = new SceneObject({ scene: this });
+    for (const [key, Entity] of Object.entries(this.entities)) {
+      const instance = new Entity({ scene: this });
       this.instances[key] = instance;
       this.arrayedInstances.push(instance);
       if (instance?.awake) {
@@ -143,7 +143,7 @@ export class InteractiveScene implements IInteractiveScene {
   update(time: number) {
     this.onBeforeFrameRender();
     for (const instance of this.arrayedInstances) {
-      // Force async on the SceneObject level to allow concurrency
+      // Force async on the Entity level to allow concurrency
       (async () => {
         if (instance?.update) {
           instance.update(time);
@@ -155,7 +155,7 @@ export class InteractiveScene implements IInteractiveScene {
 
   lateUpdate(time: number) {
     for (const instance of this.arrayedInstances) {
-      // Force async on the SceneObject level to allow concurrency
+      // Force async on the Entity level to allow concurrency
       (async () => {
         if (instance.lateUpdate) {
           instance.lateUpdate(time);
@@ -183,7 +183,7 @@ export class InteractiveScene implements IInteractiveScene {
   resize(event: UIEvent) {
     this.onResize(event);
     for (const instance of this.arrayedInstances) {
-      // Force async on the SceneObject level to allow concurrency
+      // Force async on the Entity level to allow concurrency
       (async () => {
         if (instance.resize) {
           instance.resize(event);

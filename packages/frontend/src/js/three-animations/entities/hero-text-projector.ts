@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { MonoBehaviour, SceneObject } from '../core/components';
+import { MonoBehaviour, Entity } from '../core/components';
 
 class CanvasBehaviour extends MonoBehaviour {
   canvas?: HTMLCanvasElement;
@@ -304,12 +304,12 @@ class MeshRenderer extends MonoBehaviour {
     this.textureIsActive = true;
   }
 
-  exportAsSceneObject(): any {
+  exportAsEntity(): any {
     return this.mesh;
   }
 }
 
-export class HeroTextProjector extends SceneObject {
+export class HeroTextProjector extends Entity {
   monobehaviours = {
     MeshRenderer,
     TextureRenderer,

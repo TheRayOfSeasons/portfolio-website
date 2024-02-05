@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Group, Object3D, Object3DEventMap } from 'three';
-import { IMonoBehaviour, ISceneObject, IBehaviour } from './types';
+import { IMonoBehaviour, IEntity as IEntity, IBehaviour } from './types';
 import { InteractiveScene } from './scene-management';
 
 export class Behaviour implements IBehaviour {
@@ -11,7 +11,7 @@ export class Behaviour implements IBehaviour {
   resize?(event: UIEvent): void;
   onViewEnter?(): void;
   onViewLeave?(): void;
-  exportAsSceneObject?(): Object3D;
+  exportAsEntity?(): Object3D;
   exportObjectGroup?(): Group<Object3DEventMap>;
 }
 
@@ -20,7 +20,7 @@ export class Behaviour implements IBehaviour {
  * to build up one full behaviour. A loose counterpart of
  * GameObject from Unity Engine.
  */
-export class SceneObject implements ISceneObject {
+export class Entity implements IEntity {
   scene?: InteractiveScene;
   monobehaviours: Record<string, typeof MonoBehaviour> = {};
   components: Record<string, MonoBehaviour> = {};
@@ -73,12 +73,12 @@ export class SceneObject implements ISceneObject {
       if (component?.start) {
         component.start();
       }
-      if (!component?.exportAsSceneObject) {
+      if (!component?.exportAsEntity) {
         return;
       }
-      const exportedSceneObject = component.exportAsSceneObject();
-      if (exportedSceneObject) {
-        this.group.add(exportedSceneObject);
+      const exportedEntity = component.exportAsEntity();
+      if (exportedEntity) {
+        this.group.add(exportedEntity);
       }
     }
   }
@@ -130,14 +130,14 @@ export class SceneObject implements ISceneObject {
 
 /** A singular piece of a behaviour. */
 export class MonoBehaviour extends Behaviour implements IMonoBehaviour {
-  parentBehaviour: SceneObject;
+  parentBehaviour: Entity;
   scene: InteractiveScene;
 
   constructor({
     parentBehaviour,
     scene,
   }: {
-    parentBehaviour: SceneObject,
+    parentBehaviour: Entity,
     scene: InteractiveScene,
   }) {
     super();

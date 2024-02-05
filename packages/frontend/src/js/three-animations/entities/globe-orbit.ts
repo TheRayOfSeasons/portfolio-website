@@ -1,7 +1,7 @@
 // import { OrbitControls } from 'three/examples/jsm/Addons.js';
 // @ts-ignore
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { MonoBehaviour, SceneObject } from '../core/components';
+import { MonoBehaviour, Entity } from '../core/components';
 
 class Manager extends MonoBehaviour {
   controls?: OrbitControls;
@@ -21,7 +21,7 @@ class Manager extends MonoBehaviour {
   }
 }
 
-export class GlobeOrbit extends SceneObject {
+export class GlobeOrbit extends Entity {
   monobehaviours: Record<string, typeof MonoBehaviour> = {
     Manager,
   }
