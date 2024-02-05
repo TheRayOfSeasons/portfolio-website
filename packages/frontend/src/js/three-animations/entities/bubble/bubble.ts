@@ -2,8 +2,8 @@ import GSAP from 'gsap';
 import * as THREE from 'three';
 // @ts-ignore
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { MonoBehaviour, Entity } from '../core/components';
-import { ShaderUtils } from '../core/utils';
+import { MonoBehaviour, Entity } from '../../core/components';
+import { ShaderUtils } from '../../core/utils';
 
 class LeashSource extends MonoBehaviour {
   object: THREE.Object3D;

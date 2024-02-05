@@ -1,7 +1,7 @@
 import { PerspectiveCamera } from 'three';
 import { InteractiveScene } from '../core/scene-management';
-import { Bubble } from '../entities/bubble';
-import { HeroTextProjector } from '../entities/hero-text-projector';
+import { Bubble } from '../entities/bubble/bubble';
+import { HeroTextProjector } from '../entities/bubble/hero-text-projector';
 
 export class BubbleScene extends InteractiveScene {
   entities = {

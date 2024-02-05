@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { MonoBehaviour, Entity } from '../core/components';
+import { MonoBehaviour, Entity } from '../../core/components';
 
 class CanvasBehaviour extends MonoBehaviour {
   canvas?: HTMLCanvasElement;
