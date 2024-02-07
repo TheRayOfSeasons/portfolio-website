@@ -11,7 +11,7 @@
 
 {% macro button(href) %}
   <a
-    class="block bg-charcoal flex flex-row p-2 text-xl font-archivo text-white rounded-md hover:text-black hover:bg-white"
+    class="block bg-charcoal flex flex-row p-2 text-xl font-montserrat font-bold text-white rounded-md hover:text-black hover:bg-white"
     href="{{ href }}"
     rel="noreferrer noopener"
     target="_blank"
@@ -22,9 +22,9 @@
 
 <div class="relative h-screen overflow-hidden w-full flex flex-row justify-center items-center">
   <div class="p-20">
-    <h1 class="font-julius text-5xl font-bold text-gold text-center">Ray Lawrence Henri Sison</h1>
-    <h2 class="font-archivo text-2xl text-white text-center">Software Engineer</h2>
-    <div class="mt-16 flex md:flex-row flex-col justify-center">
+    <h1 class="font-bebas text-5xl font-bold text-gold text-center">Ray Lawrence Henri Sison</h1>
+    <h2 class="font-montserrat text-2xl text-white text-center tracking-widest">Software Engineer</h2>
+    <div class="mt-16 flex lg:flex-row flex-col justify-center">
       <a
         class="block portfolio-button max-w-[191px] mx-auto"
         href="/bubble"
@@ -34,10 +34,10 @@
         <div class="portfolio-button__body rounded-lg p-2">
           <div class="w-[175px] h-[175px] bg-no-repeat bg-cover bg-center" style="background-image: url('/img/bubble-preview.png');"></div>
         </div>
-        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-julius">Bubble</h3>
+        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-bebas">Bubble</h3>
       </a>
       <a
-        class="md:ml-6 md:mt-0 mt-6 block portfolio-button max-w-[191px] mx-auto"
+        class="lg:ml-6 lg:mt-0 mt-6 block portfolio-button max-w-[191px] mx-auto"
         href="/sound-wave-visualizer"
         rel="noreferrer noopener"
         target="_blank"
@@ -45,7 +45,7 @@
         <div class="portfolio-button__body rounded-lg p-2">
           <div class="w-[175px] h-[175px] bg-no-repeat bg-cover bg-center" style="background-image: url('/img/waves.jpg');"></div>
         </div>
-        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-julius">Soundwave Visualizer</h3>
+        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-bebas">Soundwave Visualizer</h3>
       </a>
     </div>
     <div class="mt-10 flex flex-row justify-center">
@@ -56,39 +56,40 @@
   </div>
 </div>
 
-<section id="about" class="mt-32 max-w-[1440px] px-20 mx-auto">
-  <div class="mt-32 w-full flex flex-row">
-    <div class="max-w-[480px] animated fade-slide-in-top">
+<section id="about" class="mt-32 max-w-[1440px] lg:px-20 px-8 mx-auto">
+  <div class="mt-32 w-full flex lg:flex-row flex-col-reverse">
+    <div class="lg:mt-0 mt-8 max-w-[480px] animated fade-slide-in-top">
       <div class="sticky top-[2rem]">
-        <h2 class="font-julius text-gold text-3xl font-bold">About Me</h2>
-        <p class="mt-4 text-lg text-white font-inter">
+        <h2 class="font-bebas text-gold text-3xl font-bold">About Me</h2>
+        <p class="mt-4 text-lg text-white font-montserrat">
           Hey, nice seeing you here! I'm a nerdy software engineer from the
           Philippines who can do fullstack development with a preference and
           love for creating interesting frontends.
         </p>
-        <p class="mt-4 text-lg text-white font-inter">
+        <p class="mt-4 text-lg text-white font-montserrat">
           Becoming a developer was something I already had in mind since the
           time I wrote my first HTML when I was 13. That was way back in 2011.
           I've been programming for quite a while now. Sheeesh!
         </p>
-        <p class="mt-4 text-lg text-white font-inter">
+        <p class="mt-4 text-lg text-white font-montserrat">
           There's something about coding that always intrigues me. It feels
           like solving a puzzle or building legos.
         </p>
-        <p class="mt-4 text-lg text-white font-inter">
+        <p class="mt-4 text-lg text-white font-montserrat">
           Anyways, let's get into the good stuff! YEEAAHH!
         </p>
       </div>
     </div>
-    <div class="flex-1 flex flex-row justify-center relative left-[5rem]">
+    <div class="flex-1 flex flex-row justify-center relative lg:left-[5rem]">
       <div class="relative">
         <img
-          class="rounded rounded-lg animated fade-slide-in-top delay-300"
+          class="rounded rounded-lg animated fade-slide-in-top lg:delay-300 lg:h-[unset] h-[200px] object-cover"
+          style="object-position: 100% 35%;"
           src="/img/ray-waves.jpeg"
           width="400"
           alt="ray"
         />
-        <div class="absolute top-[2rem] left-[-3rem] rotate-[5deg]">
+        <div class="absolute top-[2rem] left-[-3rem] rotate-[5deg] lg:block hidden">
           <img
             class="relative rounded rounded-md animated zoom-in delay-500"
             src="/img/ray-polo.jpeg"
@@ -96,7 +97,7 @@
             alt="ray"
           />
         </div>
-        <div class="absolute bottom-[8rem] right-[-3rem] transform rotate-[10deg]">
+        <div class="absolute bottom-[8rem] right-[-3rem] transform rotate-[10deg] lg:block hidden">
           <img
             class="relative rounded rounded-md animated zoom-in delay-[0.6s]"
             src="/img/ray-linked-in.jpeg"
@@ -111,8 +112,8 @@
 </section>
 
 <section id="what-i-can-do" class="mt-32">
-  <div class="relative h-screen">
-    <div class="absolute w-full h-full flex flex-row justify-center items-center">
+  <div class="relative h-screen overflow-hidden">
+    <div class="absolute w-full h-full flex flex-row justify-center items-center z-[1]">
       <div class="absolute w-[100px] h-[100px]">
         <img
           class="absolute top-0 left-0 animated zoom-in delay-30 top-[-8rem] left-[-23rem]"
@@ -212,8 +213,8 @@
         />
       </div>
     </div>
-    <div class="w-full h-full flex flex-col justify-center items-center">
-      <h2 class="font-julius text-gold text-5xl font-bold font-julius">What I can do</h2>
+    <div class="relative w-full h-full flex flex-col justify-center items-center z-[2]">
+      <h2 class="font-bebas text-gold text-5xl font-bold font-bebas">What I can do</h2>
       <div class="mt-6 flex flex-row justify-center">
         {% call button('/resume') %}
           View Resume
