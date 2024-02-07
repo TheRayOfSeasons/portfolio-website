@@ -9,6 +9,17 @@
 
 {% block content %}
 
+{% macro button(href) %}
+  <a
+    class="block bg-charcoal flex flex-row p-2 text-xl font-archivo text-white rounded-md hover:text-black hover:bg-white"
+    href="{{ href }}"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    {{ caller() }}
+  </a>
+{% endmacro %}
+
 <div class="relative h-screen overflow-hidden w-full flex flex-row justify-center items-center">
   <div class="p-20">
     <h1 class="font-julius text-5xl font-bold text-gold text-center">Ray Lawrence Henri Sison</h1>
@@ -38,14 +49,9 @@
       </a>
     </div>
     <div class="mt-10 flex flex-row justify-center">
-      <a
-        class="block bg-charcoal flex flex-row p-2 text-xl font-archivo text-white rounded-md hover:text-black hover:bg-white"
-        href="https://github.com/TheRayOfSeasons/portfolio-website"
-        rel="noreferrer noopener"
-        target="_blank"
-      >
+      {% call button('https://github.com/TheRayOfSeasons/portfolio-website') %}
         View Code in Github
-      </a>
+      {% endcall %}
     </div>
   </div>
 </div>
@@ -208,6 +214,11 @@
     </div>
     <div class="w-full h-full flex flex-col justify-center items-center">
       <h2 class="font-julius text-gold text-5xl font-bold font-julius">What I can do</h2>
+      <div class="mt-6 flex flex-row justify-center">
+        {% call button('/resume') %}
+          View Resume
+        {% endcall %}
+      </div>
     </div>
   </div>
 </section>
