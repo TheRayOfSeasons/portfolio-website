@@ -1,0 +1,18 @@
+.bg-burgundy-gradient {
+  background: linear-gradient(
+    45deg,
+    theme('colors.burgundy-mute') 0%,
+    theme('colors.burgundy-saturated') 20%,
+    theme('colors.hotpink') 50%,
+    theme('colors.burgundy-saturated') 80%,
+    theme('colors.burgundy-mute') 100%
+  );
+}
+
+.bg-burgundy-body-gradient {
+  background: linear-gradient(
+    -45deg,
+    theme('colors.burgundy-dark'),
+    theme('colors.burgundy-black')
+  );
+}

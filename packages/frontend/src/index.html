@@ -20,47 +20,36 @@
   </a>
 {% endmacro %}
 
-<div class="relative h-screen overflow-hidden w-full flex flex-row justify-center items-center">
-  <div class="p-20">
-    <h1 class="font-bebas text-5xl font-bold text-gold text-center">Ray Lawrence Henri Sison</h1>
-    <h2 class="font-montserrat text-2xl text-white text-center tracking-widest">Software Engineer</h2>
-    <div class="mt-16 flex lg:flex-row flex-col justify-center">
-      <a
-        class="block portfolio-button max-w-[191px] mx-auto"
-        href="/bubble"
-        rel="noreferrer noopener"
-        target="_blank"
-      >
-        <div class="portfolio-button__body rounded-lg p-2">
-          <div class="w-[175px] h-[175px] bg-no-repeat bg-cover bg-center" style="background-image: url('/img/bubble-preview.png');"></div>
-        </div>
-        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-bebas">Bubble</h3>
-      </a>
-      <a
-        class="lg:ml-6 lg:mt-0 mt-6 block portfolio-button max-w-[191px] mx-auto"
-        href="/sound-wave-visualizer"
-        rel="noreferrer noopener"
-        target="_blank"
-      >
-        <div class="portfolio-button__body rounded-lg p-2">
-          <div class="w-[175px] h-[175px] bg-no-repeat bg-cover bg-center" style="background-image: url('/img/waves.jpg');"></div>
-        </div>
-        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-bebas">Soundwave Visualizer</h3>
-      </a>
-    </div>
-    <div class="mt-10 flex flex-row justify-center">
-      {% call button('https://github.com/TheRayOfSeasons/portfolio-website') %}
-        View Code in Github
-      {% endcall %}
+<div class="relative h-screen flex justify-center items-center">
+  <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-[2]">
+    <div class="relative"></div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center z-[1]">
+    <div class="w-[50%] h-[50%] infinite-rotation-slow">
+      <div class="rotating-gradient-background w-full h-full p-[4px] rounded-lg">
+        <div class="w-full h-full bg-burgundy-body-gradient rounded-md"></div>
+      </div>
     </div>
   </div>
+  <div class="relative z-[3]">
+    <h1 class="header-name animated font-bebas text-7xl font-bold text-teal text-center fade-zoom-in">Ray Lawrence Henri Sison</h1>
+    <h2 class="header-title animated font-montserrat text-2xl text-white text-center tracking-widest fade-zoom-in">Software Engineer</h2>
+  </div>
 </div>
+
+<!-- <div class="h-screen flex justify-center items-center">
+  <div class="w-[100px] h-[100px]">
+    <div class="w-full h-full p-[2px] bg-burgundy-gradient rounded-lg">
+      <div class="w-full h-full bg-burgundy-mute rounded-md"></div>
+    </div>
+  </div>
+</div> -->
 
 <section id="about" class="mt-32 max-w-[1440px] lg:px-20 px-8 mx-auto">
   <div class="mt-32 w-full flex lg:flex-row flex-col-reverse">
     <div class="lg:mt-0 mt-8 max-w-[480px] animated fade-slide-in-top">
       <div class="sticky top-[2rem]">
-        <h2 class="font-bebas text-gold text-3xl font-bold">About Me</h2>
+        <h2 class="font-bebas text-teal text-3xl font-bold">About Me</h2>
         <p class="mt-4 text-lg text-white font-montserrat">
           Hey, nice seeing you here! I'm a nerdy software engineer from the
           Philippines who can do fullstack development with a preference and
@@ -214,7 +203,7 @@
       </div>
     </div>
     <div class="relative w-full h-full flex flex-col justify-center items-center z-[2]">
-      <h2 class="font-bebas text-gold text-5xl font-bold font-bebas">What I can do</h2>
+      <h2 class="font-bebas text-teal text-5xl font-bold font-bebas">What I can do</h2>
       <div class="mt-6 flex flex-row justify-center">
         {% call button('/resume') %}
           View Resume
@@ -223,8 +212,44 @@
     </div>
   </div>
 </section>
+
+
+<div class="relative h-screen overflow-hidden w-full flex flex-row justify-center items-center">
+  <div class="p-20">
+    <div class="mt-16 flex lg:flex-row flex-col justify-center">
+      <a
+        class="block portfolio-button max-w-[191px] mx-auto"
+        href="/bubble"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        <div class="portfolio-button__body rounded-lg p-2">
+          <div class="w-[175px] h-[175px] bg-no-repeat bg-cover bg-center" style="background-image: url('/img/bubble-preview.png');"></div>
+        </div>
+        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-bebas">Bubble</h3>
+      </a>
+      <a
+        class="lg:ml-6 lg:mt-0 mt-6 block portfolio-button max-w-[191px] mx-auto"
+        href="/sound-wave-visualizer"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        <div class="portfolio-button__body rounded-lg p-2">
+          <div class="w-[175px] h-[175px] bg-no-repeat bg-cover bg-center" style="background-image: url('/img/waves.jpg');"></div>
+        </div>
+        <h3 class="max-w-[175px] text-xl text-white text-center mt-2 font-bebas">Soundwave Visualizer</h3>
+      </a>
+    </div>
+    <div class="mt-10 flex flex-row justify-center">
+      {% call button('https://github.com/TheRayOfSeasons/portfolio-website') %}
+        View Code in Github
+      {% endcall %}
+    </div>
+  </div>
+</div>
 {% endblock content %}
 
 {% block scripts %}
   <script type="module" src="/js/on-scroll-animations.ts"></script>
+  <script type="module" src="/js/index.ts"></script>
 {% endblock scripts %}

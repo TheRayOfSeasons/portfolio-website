@@ -23,6 +23,18 @@
   }
 }
 
+.fade-zoom-in {
+  opacity: 0;
+  transform: scale(0.75);
+  transition-property: all;
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+    transition-duration: 1.5s;
+  }
+}
+
 @keyframes rotating {
   from {
     transform: rotate(0deg);
@@ -34,4 +46,8 @@
 
 .infinite-rotation {
   animation: rotating 2s linear infinite;
+}
+
+.infinite-rotation-slow {
+  animation: rotating 120s linear infinite;
 }
