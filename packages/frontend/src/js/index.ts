@@ -1,3 +1,6 @@
+import { ThreeAnimations } from './three-animations/render-manager';
+import { CyberpunkDripScene } from './three-animations/scenes/cyberpunk-drip-scene';
+
 document.addEventListener('DOMContentLoaded', () => {
   const headerName = document.querySelector('.header-name');
   const headerTitle = document.querySelector('.header-title');
@@ -12,14 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const gradient = `
         linear-gradient(
           ${(time * 0.1) + 45}deg,
-          #411D2B 0%,
-          #42EFF8 20%,
-          #F20089 50%,
-          #42EFF8 80%,
-          #411D2B 100%
+          #007AFF 0%,
+          #02D7F2 50%,
+          #007AFF 100%
         )
       `;
-      console.log(gradient);
       (background as HTMLElement).style.background = gradient;
     }
     window.requestAnimationFrame(update);
@@ -27,4 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   update(0);
   window.requestAnimationFrame(update);
+
+  const canvas: HTMLCanvasElement = document.getElementById('cyberpunk-drip') as HTMLCanvasElement;
+  if (canvas) {
+    ThreeAnimations.init({
+      canvas,
+      name: 'cyberpunk-drip',
+      sceneClass: CyberpunkDripScene,
+    });
+  }
 });

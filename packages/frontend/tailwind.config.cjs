@@ -31,6 +31,8 @@ module.exports = {
         'emerald': '#50C878',
         'gold': '#FFD700',
         'charcoal': '#333333',
+        'blue-light': '#02D7F2',
+        'blue': '#007AFF',
         'teal': '#42EFF8',
         'burgundy-saturated': '#430E18',
         'burgundy-dark': '#2A0A11',
