@@ -13,12 +13,34 @@
 .portfolio-button {
   .portfolio-button__body {
     @apply bg-charcoal;
-  
+
   }
   &:hover .portfolio-button__body,
   &:focus .portfolio-button__body {
     background: linear-gradient(225deg, theme('colors.white'), theme('colors.matte-black'));
     animation: gradient 0.5s ease infinite;
     background-size: 400% 400%;
+  }
+}
+
+.work-button {
+  .work-button__active-bg {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .work-button__title {
+    @apply text-white;
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    .work-button__active-bg {
+      opacity: 1;
+    }
+
+    .work-button__title {
+      @apply text-teal;
+    }
   }
 }

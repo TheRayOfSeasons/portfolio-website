@@ -1,0 +1,53 @@
+{% macro straight_line() %}
+  <div class="flex flex-row justify-center w-[30px]">
+    <div class="h-full border-[2px] border-navy"></div>
+  </div>
+{% endmacro %}
+
+{% macro curve_right() %}
+  <div class="relative overflow-hidden w-[30px]">
+    <div class="absolute border-[4px] border-navy left-[13px] bottom-[calc(50%-2px)] w-[50px] h-[50px] rounded-2xl"></div>
+  </div>
+{% endmacro %}
+
+{% macro curve_right_down() %}
+  <div class="relative overflow-hidden w-[30px]">
+    <div class="absolute border-[4px] border-navy right-[13px] top-[calc(50%-2px)] w-[50px] h-[50px] rounded-2xl"></div>
+  </div>
+{% endmacro %}
+
+{% macro curve_left() %}
+  <div class="relative overflow-hidden w-[30px]">
+    <div class="absolute border-[4px] border-navy left-[13px] top-[calc(50%-2px)] w-[50px] h-[50px] rounded-2xl"></div>
+  </div>
+{% endmacro %}
+
+{% macro curve_left_down() %}
+  <div class="relative overflow-hidden w-[30px]">
+    <div class="absolute border-[4px] border-navy right-[13px] bottom-[calc(50%-2px)] w-[50px] h-[50px] rounded-2xl"></div>
+  </div>
+{% endmacro %}
+
+{% macro line_point() %}
+  <div class="relative w-[30px]">
+    <div class="absolute w-full h-full flex flex-col justify-center items-center">
+      <div class="bg-white border-[2px] border-navy w-[15px] h-[15px] rounded-full"></div>
+    </div>
+    <div class="flex flex-row justify-center w-full h-full">
+      <div class="h-full border-[2px] border-navy"></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro line_point_gold() %}
+  <div class="relative w-[30px]">
+    <div class="absolute w-full h-full flex flex-col justify-center items-center">
+      <div class="bg-white border-[2px] border-navy w-[15px] h-[15px] rounded-full flex flex-col justify-center items-center">
+        <div class="rounded-full w-[7px] h-[7px] bg-gold"></div>
+      </div>
+    </div>
+    <div class="flex flex-row justify-center w-full h-full">
+      <div class="h-full border-[2px] border-navy"></div>
+    </div>
+  </div>
+{% endmacro %}

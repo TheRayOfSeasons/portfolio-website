@@ -4,10 +4,20 @@ import { CyberpunkDripScene } from './three-animations/scenes/cyberpunk-drip-sce
 document.addEventListener('DOMContentLoaded', () => {
   const headerName = document.querySelector('.header-name');
   const headerTitle = document.querySelector('.header-title');
+  const banner = document.querySelector('.banner');
+  const heroPicture = document.querySelector('.hero-picture');
+  const heroMenu = document.querySelector('.hero-menu');
   headerName?.classList.add('active');
   setTimeout(() => {
+    banner?.classList.add('active');
+  }, 300);
+  setTimeout(() => {
     headerTitle?.classList.add('active');
+    heroPicture?.classList.add('active');
   }, 600);
+  setTimeout(() => {
+    heroMenu?.classList.add('active');
+  }, 900);
   const rotatingGradientBackgrounds = document.querySelectorAll('.rotating-gradient-background');
 
   const update = (time: number) => {

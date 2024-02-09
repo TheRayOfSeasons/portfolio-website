@@ -16,3 +16,15 @@
     theme('colors.burgundy-black')
   );
 }
+
+.bg-blue-blush {
+  background: radial-gradient(circle, theme('colors.teal') 0%, theme('colors.blue') 40%, theme('colors.navy') 100%);
+}
+
+.blush-1 {
+  background-color: theme('colors.teal');
+  box-shadow:
+    0 0 60px 30px theme('colors.teal'),  /* inner */
+    0 0 100px 60px theme('colors.blue'), /* middle */
+    0 0 140px 90px theme('colors.navy'); /* outer */
+}

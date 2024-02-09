@@ -82,11 +82,6 @@ class TextureRenderer extends MonoBehaviour {
           return color;
         }
 
-        float fade(vec2 uv)
-        {
-          return 1.0 - uv.y;
-        }
-
         void main()
         {
           vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution.yy) / uResolution.yy;
@@ -110,8 +105,7 @@ class TextureRenderer extends MonoBehaviour {
           }
 
           color += background(originalUv);
-          float alpha = fade(vUv);
-          gl_FragColor = vec4(color.rgb, color.a * alpha);
+          gl_FragColor = mix(vec4(0.0), color, clamp(originalUv.y + 0.5, 0.0, 1.0));
         }
       `,
     });

@@ -1,12 +1,37 @@
+.fade-slide-in-bottom {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition-duration: 0.5s;
+  }
+}
+
 .fade-slide-in-top {
   opacity: 0;
   transform: translateY(50px);
   transition-property: all;
-  transition-duration: 0.3s;
-
+  
   &.active {
     opacity: 1;
     transform: translateY(0px);
+    transition-duration: 0.3s;
+  }
+}
+
+.fade-slide-in-top-slow {
+  opacity: 0;
+  transform: translateY(50px);
+  transition-property: all;
+  
+  &.active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-duration: 0.6s;
   }
 }
 
