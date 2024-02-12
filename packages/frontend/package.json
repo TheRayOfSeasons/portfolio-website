@@ -10,6 +10,7 @@
     "start": "vite serve"
   },
   "devDependencies": {
+    "@types/d3-geo": "^3.1.0",
     "@types/three": "^0.160.0",
     "@types/webfontloader": "^1.6.38",
     "autoprefixer": "^10.4.17",
@@ -22,6 +23,7 @@
     "vite-plugin-nunjucks": "^0.2.0"
   },
   "dependencies": {
+    "d3-geo": "^3.1.0",
     "gsap": "^3.12.5",
     "rxjs": "^7.8.1",
     "stats-js": "^1.0.1",
