@@ -1,4 +1,3 @@
-// import { OrbitControls } from 'three/examples/jsm/Addons.js';
 // @ts-ignore
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { MonoBehaviour, Entity } from '../core/components';

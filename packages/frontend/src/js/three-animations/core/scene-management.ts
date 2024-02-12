@@ -132,7 +132,7 @@ export class InteractiveScene implements IInteractiveScene {
         instance.start();
       }
       if (!instance?.exportObjectGroup) {
-        return;
+        continue;
       }
       const group = instance.exportObjectGroup();
       this.scene.add(group);

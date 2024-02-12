@@ -1,0 +1,48 @@
+{% extends "src/templates/base.html" %}
+
+{% set meta = {
+  seo_title: "Globe",
+  seo_description: "My own take on the WebGL globe using Three.js"
+} %}
+
+{% block title %}Globe{% endblock title %}
+
+{# empty #}
+{% block head_scripts %}{% endblock head_scripts %}
+
+{% block content %}
+  {% macro create_item(target_name, continent, country) %}
+    <div
+      class="globe__item hover:bg-white text-white hover:text-black border border-white px-4 py-3 transition duration-150"
+      role="button"
+      data-globe-target="{{ target_name }}"
+      aria-mouse-follower="expand"
+    >
+      <h3 class="font-bebas text-2xl">
+        {{ continent }}
+      </h3>
+      <p class="font-montserrat text-lg">
+        {{ country }}
+      </p>
+    </div>
+  {% endmacro %}
+
+  <div id="globe-no-overlay"></div>
+  <div id="globe-overlay" class="relative w-screen h-screen">
+    <div id="globe" class="relative w-full h-full z-[1]">
+      <canvas id="globe-view" class="w-full h-full"></canvas>
+    </div>
+    <div class="absolute bottom-0 w-full flex flex-row justify-center basis-full flex-wrap z-[2]">
+      {{ create_item('uae', 'Asia', 'United Arab Emirates') }}
+      {{ create_item('uk', 'Europe', 'United Kingdom') }}
+      {{ create_item('sg', 'Asia', 'Singapore') }}
+      {{ create_item('us', 'North America', 'United States of America') }}
+      {{ create_item('au', 'Oceania', 'Australia') }}
+      {{ create_item('ph', 'Asia', 'Philippines') }}
+    </div>
+  </div>
+{% endblock content %}
+
+{% block scripts %}
+  <script type="module" src="/js/globe-page.ts"></script>
+{% endblock scripts %}
