@@ -1,6 +1,5 @@
 {% set ENVIRONMENT = '' | ENVIRONMENT %}
 {% set DOMAIN = '' | DOMAIN %}
-{% set WEBSITE_NAME = 'Website' %}
 {% set TWITTER_HANDLE = '@therayofseasons' %}
 
 <!DOCTYPE html>
@@ -9,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{% block title %}{% endblock title %}{% block extra_title %} | {{ WEBSITE_NAME }} {% endblock extra_title %}</title>
+    <title>{% block title %}{% endblock title %}{% block extra_title %}{% endblock extra_title %}</title>
 
     {# TODO: favicons #}
     {# <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> #}

@@ -1,7 +1,9 @@
 {% extends "src/templates/base.html" %}
 
+{% from 'src/templates/macros/github-link.html' import github_link %}
+
 {% set meta = {
-  seo_title: "Globe",
+  seo_title: "WebGL Globe",
   seo_description: "My own take on the WebGL globe using Three.js"
 } %}
 
@@ -11,6 +13,7 @@
 {% block head_scripts %}{% endblock head_scripts %}
 
 {% block content %}
+  {{ github_link('https://github.com/TheRayOfSeasons/portfolio-website/blob/main/packages/frontend/src/js/three-animations/scenes/globe-scene.ts') }}
   {% macro create_item(target_name, continent, country) %}
     <div
       class="globe__item hover:bg-white text-white hover:text-black border border-white px-4 py-3 transition duration-150"

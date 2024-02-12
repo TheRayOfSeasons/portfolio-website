@@ -1,0 +1,21 @@
+{% macro github_link(link) %}
+  <div class="fixed top-[16px] right-[16px] z-[999]">
+    <a
+      class="block bg-navy hover:bg-white text-white hover:text-black fill-white hover:text-black rounded-lg transition duration-150"
+      href="{{ link }}"
+      rel="noreferrer noopener"
+      target="_blank"
+    >
+      <div class="flex flex-row px-4 py-2">
+        <svg width="32" height="32">
+          <use href="#github-small"></use>
+        </svg>
+        <div class="ml-2 flex flex-col justify-center">
+          <p>
+            View in Github
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+{% endmacro %}
