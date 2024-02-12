@@ -57,6 +57,10 @@
       <h1>Your browser does not support JavaScript!</h1>
     </noscript>
 
+    {% block sprites %}
+      {% include "./partials/sprites.html" %}
+    {% endblock sprites %}
+
     {% block nav_menu %}
       {% include "./partials/header.html" %}
     {% endblock nav_menu %}
