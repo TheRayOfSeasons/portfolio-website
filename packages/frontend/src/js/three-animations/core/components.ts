@@ -30,8 +30,9 @@ export class Entity implements IEntity {
   constructor({ scene }: { scene: InteractiveScene }) {
     this.scene = scene;
     this.group = new Group();
+    this.group.name = this.constructor.name;
   }
-  
+
   /**
    * Add a MonoBehaviour into the object, which in turn is reflected into the scene.
    * @param args
