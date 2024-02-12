@@ -11,36 +11,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{% block title %}{% endblock title %}{% block extra_title %} | {{ WEBSITE_NAME }} {% endblock extra_title %}</title>
 
-    <!-- TODO: favicons -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest"> -->
+    {# TODO: favicons #}
+    {# <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> #}
+    {# <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> #}
+    {# <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> #}
+    {# <link rel="manifest" href="/site.webmanifest"> #}
 
-    <!--  TODO: colors -->
-    <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"> -->
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="theme-color" content="#60a1c4">
+    {# TODO: colors #}
+    {# <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"> #}
+    {# <meta name="msapplication-TileColor" content="#2b5797"> #}
+    {# <meta name="theme-color" content="#60a1c4"> #}
 
     {% set cache_buster = '' | cacheBusterValue %}
     {% set raw_domain = DOMAIN | replace("https://", "") %}
-    {% set preview_image = 'site-preview.jpeg' %}
 
     {# Twitter summary card - see https://dev.twitter.com/cards/types/summary #}
     {# and https://dev.twitter.com/cards/getting-started #}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="{{ TWITTER_HANDLE }}" />
-    <meta name="twitter:domain" value="{{ raw_domain }}">
-    <meta name="twitter:title" value="{{ meta.seo_title|default(WEBSITE_NAME) }}" />
-    <meta name="twitter:description" value="{{ meta.seo_description|default("") }}">
-    <meta name="twitter:image" value="{{ DOMAIN }}/{{ preview_image }}?cachebuster={{ cache_buster }}" />
-    <meta name="twitter:url" value="{{ DOMAIN }}">
+    {# <meta name="twitter:card" content="summary_large_image" /> #}
+    {# <meta name="twitter:site" content="{{ TWITTER_HANDLE }}" /> #}
+    {# <meta name="twitter:domain" value="{{ raw_domain }}"> #}
+    {# <meta name="twitter:title" value="{{ meta.seo_title|default(WEBSITE_NAME) }}" /> #}
+    {# <meta name="twitter:description" value="{{ meta.seo_description|default("") }}"> #}
+    {# <meta name="twitter:image" value="{{ DOMAIN }}/{{ meta.preview_image }}?cachebuster={{ cache_buster }}" /> #}
+    {# <meta name="twitter:url" value="{{ DOMAIN }}"> #}
 
     {# Facebook OpenGraph tags #}
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ DOMAIN }}" />
-    <meta property="og:image" content="{{ DOMAIN }}/{{ preview_image }}?cachebuster={{ cache_buster }}" />
-    <meta property="og:image:secure_url" content="{{ DOMAIN }}/{{ preview_image }}?cachebuster={{ cache_buster }}" />
+    {# <meta property="og:url" content="{{ DOMAIN }}" /> #}
+    {# <meta property="og:image" content="{{ DOMAIN }}/{{ preview_image }}?cachebuster={{ cache_buster }}" /> #}
+    {# <meta property="og:image:secure_url" content="{{ DOMAIN }}/{{ preview_image }}?cachebuster={{ cache_buster }}" /> #}
     <meta property="og:title" content="{{ meta.seo_title|default(WEBSITE_NAME) }}" />
     <meta property="og:description" content="{{ meta.seo_description|default("") }}" />
     <meta property="og:site_name" content="{{ WEBSITE_NAME }}" />

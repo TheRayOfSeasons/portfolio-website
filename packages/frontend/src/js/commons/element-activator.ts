@@ -30,13 +30,13 @@ export class ElementActivator {
 
 export const visibilityActivator = new Observer({
   root: null,
-  rootMargin: '0px',
-  threshold: [0.2],
+  rootMargin: '24px',
+  threshold: [0, 0.2],
 });
 visibilityActivator.subscribe((entry) => {
-  if(entry.intersectionRatio > 0.2) {
+  if (entry.intersectionRatio > 0.2) {
     entry.target.classList.add('active');
-  } else {
+  } else if (entry.intersectionRatio <= 0) {
     entry.target.classList.remove('active');
   }
 });
