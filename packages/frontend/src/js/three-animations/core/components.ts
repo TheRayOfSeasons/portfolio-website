@@ -75,7 +75,7 @@ export class Entity implements IEntity {
         component.start();
       }
       if (!component?.exportAsEntity) {
-        return;
+        continue;
       }
       const exportedEntity = component.exportAsEntity();
       if (exportedEntity) {
