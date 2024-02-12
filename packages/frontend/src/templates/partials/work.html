@@ -1,0 +1,66 @@
+<section id="work" class="relative lg:mt-48 mt-32 overflow-hidden">
+  <div class="relative max-w-[1440px] lg:px-20 px-8 mx-auto">
+    <div class="absolute top-[200px] left-[100px] w-[0px] h-[0px] blush-1 z-[1]"></div>
+    <div class="absolute bottom-[200px] right-[100px] w-[0px] h-[0px] blush-1 z-[1]"></div>
+    <h2 class="font-bebas text-gold text-4xl font-bold text-center">Work</h2>
+    <div class="relative grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mt-8 z-[2]">
+      {% macro work_medium(title, link, img) %}
+        <a href="{{ link }}" rel="noreferrer noopener" target="_blank">
+          <div class="relative">
+            <div class="absolute w-full h-full bg-matte-black rounded-xl opacity-[0.7] filter backdrop-blur z-[1]"></div>
+            <div class="work-button__active-bg absolute w-full h-full rotating-gradient-background rounded-xl z-[1]"></div>
+            <div class="relative z-[2] p-1">
+              <div class="rounded-lg border border-white">
+                <img class="rounded-lg" src="{{ img }}" alt="{{ title }}" />
+              </div>
+            </div>
+          </div>
+          <h4 class="work-button__title font-bebas text-center text-2xl mt-2">{{ title }}</h4>
+        </a>
+      {% endmacro %}
+      <div class="work-button animated fade-slide-in-top">
+        {{ work_medium('Spectrum One', 'https://spectrumone.co', '/img/spectrumone.jpeg') }}
+      </div>
+      <div class="work-button animated fade-slide-in-top lg:delay-200">
+        {{ work_medium('Base 10', 'https://base10genetics.com', '/img/base10.jpeg') }}
+      </div>
+      <div class="work-button animated fade-slide-in-top lg:delay-[400ms]">
+        {{ work_medium('Zbooni', 'https://zbooni.com', '/img/zbooni.jpeg') }}
+      </div>
+    </div>
+    
+    <div class="mt-12 relative flex lg:flex-row flex-col justify-between z-[4]">
+      <div class="lg:flex-1">
+        <h2 class="relative mt-8 font-bebas text-gold text-4xl font-bold text-center">WebGL Examples</h2>
+        <div class="mt-8 flex xxs:flex-row flex-col gap-8 basis-full flex-wrap justify-center">
+          {% macro work_small(title, link, img) %}
+            <a href="{{ link }}" rel="noreferrer noopener" target="_blank" class="block">
+              <div class="relative">
+                <div class="absolute w-full h-full bg-matte-black rounded-xl opacity-[0.7] filter backdrop-blur z-[1]"></div>
+                <div class="work-button__active-bg absolute w-full h-full rotating-gradient-background rounded-xl z-[1]"></div>
+                <div class="relative z-[2] p-1">
+                  <div class="rounded-lg border border-white">
+                    <div class="rounded-lg w-[175px] h-[175px] bg-no-repeat bg-cover bg-center" style="background-image: url('{{ img }}');"></div>
+                  </div>
+                </div>
+              </div>
+              <h4 class="work-button__title font-bebas text-center text-2xl mt-2">{{ title }}</h4>
+            </a>
+          {% endmacro %}
+          <div class="work-button animated fade-slide-in-top lg:max-w-[191px] flex flex-row justify-center">
+            {{ work_small('Refracting Bubble', '/bubble', '/img/bubble-preview.png') }}
+          </div>
+          <div class="work-button animated fade-slide-in-top lg:max-w-[191px] flex flex-row justify-center lg:delay-200">
+            {{ work_small('Soundwave Visualizer', '/sound-wave-visualizer', '/img/waves.jpg') }}
+          </div>
+          <div class="work-button animated fade-slide-in-top lg:max-w-[191px] flex flex-row justify-center lg:delay-[400ms]">
+            {{ work_small('WebGL Globe', '/globe', '/img/globe.jpeg') }}
+          </div>
+          <div class="work-button animated fade-slide-in-top lg:max-w-[191px] flex flex-row justify-center lg:delay-[600ms]">
+            {{ work_small('Rippling Sphere', '/ripple', '/img/ripple.jpeg') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
