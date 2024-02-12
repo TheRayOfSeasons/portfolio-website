@@ -5,6 +5,7 @@
 @import './animations';
 @import './buttons';
 @import './gradients';
+@import './mouse-follower';
 
 .light-gradient {
   background: radial-gradient(farthest-side at center center, #aaa 1%, transparent 100%); 

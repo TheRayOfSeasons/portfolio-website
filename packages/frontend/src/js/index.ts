@@ -1,3 +1,4 @@
+import { initializeMouseEffect } from './commons/mouse-follower';
 import { ThreeAnimations } from './three-animations/render-manager';
 import { CyberpunkDripScene } from './three-animations/scenes/cyberpunk-drip-scene';
 
@@ -45,5 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
       name: 'cyberpunk-drip',
       sceneClass: CyberpunkDripScene,
     });
+  }
+
+  const mouseFollower = document.getElementById('mouse-follower');
+  if (mouseFollower) {
+    initializeMouseEffect(mouseFollower);
   }
 });

@@ -5,7 +5,7 @@
     <h2 class="font-bebas text-gold text-4xl font-bold text-center">Work</h2>
     <div class="relative grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mt-8 z-[2]">
       {% macro work_medium(title, link, img) %}
-        <a href="{{ link }}" rel="noreferrer noopener" target="_blank">
+        <a href="{{ link }}" rel="noreferrer noopener" target="_blank" aria-mouse-follower="expand">
           <div class="relative">
             <div class="absolute w-full h-full bg-matte-black rounded-xl opacity-[0.7] filter backdrop-blur z-[1]"></div>
             <div class="work-button__active-bg absolute w-full h-full rotating-gradient-background rounded-xl z-[1]"></div>
@@ -34,7 +34,7 @@
         <h2 class="relative mt-8 font-bebas text-gold text-4xl font-bold text-center">WebGL Examples</h2>
         <div class="mt-8 flex xxs:flex-row flex-col gap-8 basis-full flex-wrap justify-center">
           {% macro work_small(title, link, img) %}
-            <a href="{{ link }}" rel="noreferrer noopener" target="_blank" class="block">
+            <a href="{{ link }}" rel="noreferrer noopener" target="_blank" class="block" aria-mouse-follower="expand">
               <div class="relative">
                 <div class="absolute w-full h-full bg-matte-black rounded-xl opacity-[0.7] filter backdrop-blur z-[1]"></div>
                 <div class="work-button__active-bg absolute w-full h-full rotating-gradient-background rounded-xl z-[1]"></div>
