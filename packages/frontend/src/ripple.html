@@ -1,0 +1,21 @@
+{% extends "src/templates/base.html" %}
+
+{% set meta = {
+  seo_title: "Ripple",
+  seo_description: "An interactive rippling bubble."
+} %}
+
+{% block title %}Bubble{% endblock title %}
+
+{# empty #}
+{% block head_scripts %}{% endblock head_scripts %}
+
+{% block content %}
+  <div class="relative h-screen overflow-hidden">
+    <canvas id="ripple" class="relative w-full h-full"></canvas>
+  </div>
+{% endblock content %}
+
+{% block scripts %}
+  <script type="module" src="/js/ripple-page.ts"></script>
+{% endblock scripts %}

@@ -1,37 +1,3 @@
-/**
- * Runs a callback function in custom asymmetric intervals.
- * @param {Function} callback - The callback function
- * @param {Number[]} durations - An array of durations.
- */
-export function setAsymmetricInterval(callback: Function, durations: number[]) {
-  let index = -1;
-  let counter = 0;
-
-  const getNextDuration = () => {
-    if (index < durations.length - 1) {
-      index++;
-    } else {
-      index = 0;
-    }
-    return durations[index];
-  };
-
-  const timedCallback = () => {
-    const result = callback(++counter);
-    let duration;
-    switch (typeof (result)) {
-      case 'number':
-        duration = result;
-        break;
-      default:
-        duration = getNextDuration();
-        break;
-    }
-    setTimeout(() => timedCallback(), duration);
-  };
-  timedCallback();
-}
-
 /** Shader utilities that can be imported in GLSL shaders defined as template strings. */
 export const ShaderUtils = {
   permute: () => `
