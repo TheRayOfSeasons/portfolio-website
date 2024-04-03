@@ -719,16 +719,60 @@
         </div>
       </div>
     </div>
+    <div class="flex-1 flex flex-row justify-end mt-8">
+      <p class="text-xs italic">
+        This resume is a <a class="text-[#0000ff] underline" href="https://dfgxnd7lojdjw.cloudfront.net/resume-python" rel="noreferrer noopener" target="_blank">webpage</a> made by yours truly then saved as a PDF.
+      </p>
+    </div>
   </div>
 
   <!-- Page 3 -->
-  <div class="min-h-screen overflow-hidden flex flex-col pt-8 px-8 pb-2">
+  <!-- <div class="min-h-screen overflow-hidden flex flex-col pt-8 px-8 pb-2">
     <div>
       <h1 class="text-5xl font-bebas font-bold uppercase text-navy text-center pb-6">
         Relevant Personal Projects
       </h1>
       <h2 class="text-xl font-archivo text-navy mt-4">
-        CDK Explorations
+        Python and Django
+      </h2>
+      {% set links = [
+        {
+          title: 'Specimen Classifier',
+          description: 'A fullstack Django project that acts as a data management platform for tree specimens.',
+          href: 'https://github.com/TheRayOfSeasons/SpecimenClassifier'
+        },
+        {
+          title: 'AWS Sagemaker Pipeline Study',
+          description: 'An simple exploratory project that uses AWS Sagemaker to train and host a basic AI.',
+          href: 'https://github.com/TheRayOfSeasons/aws-sagemaker-pipeline-study'
+        },
+        {
+          title: 'Panthera Algorithm',
+          description: 'A Python exhibition project with an algorithm that determines the names of panthera hybrids based on the parents.',
+          href: 'https://github.com/TheRayOfSeasons/aws-lambda-authorizer-template'
+        },
+        {
+          title: 'AWS Lambda Authorizer Template',
+          description: 'An AWS Lambda connected to an API Gateway that authorizes a user to AWS Cognito',
+          href: 'https://github.com/TheRayOfSeasons/Panthera-Algorithm.git'
+        },
+        {
+          title: 'OS Agnostic DLL Reader',
+          description: 'A python script that reads and uses functionalities from DLLs written in C.',
+          href: 'https://github.com/TheRayOfSeasons/os-agnostic-dll-reader'
+        }
+      ] %}
+      <ul class="mt-4 list-disc list-outside">
+        {% for link in links %}
+          <li class="{% if loop.index0 > 0 %} mt-4 {% endif %}">
+            <h4 class="text-md text-bold font-bebas">{{ link.title }}</h4>
+            <p class="text-sm mt-2 font-thin text-black">{{ link.description }}</p>
+            <a href="{{ link.href }}" rel="noreferrer noopener" target="_blank" class="mt-2 text-sm text-[#0000ff] underline">{{ link.href }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <h2 class="text-xl font-archivo text-navy mt-8">
+        AWS Explorations
       </h2>
       {% set links = [
         {
@@ -751,65 +795,12 @@
           </li>
         {% endfor %}
       </ul>
-      <h2 class="text-xl font-archivo text-navy mt-8">
-        Python and Django
-      </h2>
-      {% set links = [
-        {
-          title: 'Specimen Classifier',
-          description: 'A fullstack Django project that acts as a data management platform for tree specimens.',
-          href: 'https://github.com/TheRayOfSeasons/SpecimenClassifier'
-        },
-        {
-          title: 'AWS Sagemaker Pipeline Study',
-          description: 'An simple exploratory project that uses AWS Sagemaker to train and host a basic AI.',
-          href: 'https://github.com/TheRayOfSeasons/aws-sagemaker-pipeline-study'
-        },
-        {
-          title: 'AWS Lambda Authorizer Template',
-          description: 'An AWS Lambda connected to an API Gateway that authorizes a user to AWS Cognito',
-          href: 'https://github.com/TheRayOfSeasons/aws-lambda-authorizer-template'
-        },
-        {
-          title: 'OS Agnostic DLL Reader',
-          description: 'A python script that reads and uses functionalities from DLLs written in C.',
-          href: 'https://github.com/TheRayOfSeasons/os-agnostic-dll-reader'
-        }
-      ] %}
-      <ul class="mt-4 list-disc list-outside">
-        {% for link in links %}
-          <li class="{% if loop.index0 > 0 %} mt-4 {% endif %}">
-            <h4 class="text-md text-bold font-bebas">{{ link.title }}</h4>
-            <p class="text-sm mt-2 font-thin text-black">{{ link.description }}</p>
-            <a href="{{ link }}" rel="noreferrer noopener" target="_blank" class="mt-2 text-sm text-[#0000ff] underline">{{ link.href }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-      <h2 class="text-xl font-archivo text-navy mt-8">
-        C++
-      </h2>
-      {% set links = [
-        {
-          title: 'TicTacToe',
-          description: 'A command line tictactoe game written in C++.',
-          href: 'https://github.com/TheRayOfSeasons/Multi-Lingual-Tic-Tac-Toe/blob/master/cpp/tictactoe.cpp'
-        }
-      ] %}
-      <ul class="mt-4 list-disc list-outside">
-        {% for link in links %}
-          <li class="{% if loop.index0 > 0 %} mt-4 {% endif %}">
-            <h4 class="text-md text-bold font-bebas">{{ link.title }}</h4>
-            <p class="text-sm mt-2 font-thin text-black">{{ link.description }}</p>
-            <a href="{{ link }}" rel="noreferrer noopener" target="_blank" class="mt-2 text-sm text-[#0000ff] underline">{{ link.href }}</a>
-          </li>
-        {% endfor %}
-      </ul>
     </div>
     <div class="flex-1 flex flex-row justify-end mt-8">
       <p class="text-xs italic">
-        This resume is a <a class="text-[#0000ff] underline" href="https://dfgxnd7lojdjw.cloudfront.net/resume-prosource" rel="noreferrer noopener" target="_blank">webpage</a> made by yours truly then saved as a PDF.
+        This resume is a <a class="text-[#0000ff] underline" href="https://dfgxnd7lojdjw.cloudfront.net/resume-python" rel="noreferrer noopener" target="_blank">webpage</a> made by yours truly then saved as a PDF.
       </p>
     </div>
-  </div>
+  </div> -->
 </body>
 </html>

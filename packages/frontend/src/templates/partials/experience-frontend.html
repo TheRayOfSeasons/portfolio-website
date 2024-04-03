@@ -1,0 +1,175 @@
+{% from 'src/templates/macros/line-path.html' import straight_line %}
+{% from 'src/templates/macros/line-path.html' import curve_right %}
+{% from 'src/templates/macros/line-path.html' import curve_right_down %}
+{% from 'src/templates/macros/line-path.html' import curve_left %}
+{% from 'src/templates/macros/line-path.html' import curve_left_down %}
+{% from 'src/templates/macros/line-path.html' import line_point %}
+{% from 'src/templates/macros/line-path.html' import line_point_gold %}
+
+<div class="w-full mt-4">
+  <div class="w-full flex flex-row">
+    {{ line_point_gold() }}
+    <div class="flex-1 pl-4">
+      <h4 class="text-xl font-bold font-archivo uppercase">
+        Spectrum One
+      </h4>
+    </div>
+    <div class="flex flex-col justify-center h-full">
+      <p class="font-archivo uppercase">Oct 2019 - Sep 2023</p>
+    </div>
+  </div>
+  <div class="w-full flex flex-row">
+    {{ straight_line() }}
+    <div class="flex-1 pl-8">
+      <p class="text-xs">
+        14th Floor Corporate 145, 145 Mo Ignacia Avenue,
+        Diliman, Quezon City, 1103 Metro Manila
+      </p>
+    </div>
+  </div>
+  <div class="w-full flex flex-row h-[30px]">
+    {{ curve_right() }}
+    {{ curve_right_down() }}
+    <div class="flex-1"></div>
+  </div>
+  <div class="w-full flex flex-row">
+    <div class="w-[30px]"></div>
+    {{ line_point() }}
+    <div class="flex-1 pl-4 flex flex-col justify-center">
+      <h4 class="text-md font-bold font-archivo">
+        Senior Software Engineer
+      </h4>
+    </div>
+    <div class="flex flex-col justify-center h-full">
+      <p class="font-archivo uppercase">Oct 2022 - Sep 2023</p>
+    </div>
+  </div>
+  <div class="w-full flex flex-row">
+    <div class="w-[30px]"></div>
+    {{ straight_line() }}
+    <div class="flex-1 pl-8 mb-4">
+      <ul class="text-xs list-disc">
+        <li>Served as Frontend lead for a ground up development of an e-commerce and booking platform integrated with Shopify that let's customers buy and book experiences</li>
+        <li>Utilized Next.js in the development of the booking platform</li>
+        <li>Utilized Docker for the infrastructure</li>
+        <li>Worked on an e-commerce website that lets customers subscribe to a blood test delivery service and be charged via credit card every month</li>
+        <li>Worked on automated email systems and templates</li>
+        <li>Setup API endpoints for the integration of a website with 3rd party APIs and services</li>
+        <li>Wrote Unit Tests with Cypress</li>
+      </ul>
+    </div>
+  </div>
+  <div class="w-full flex flex-row">
+    <div class="w-[30px]"></div>
+    {{ line_point() }}
+    <div class="flex-1 pl-4 flex flex-col justify-center">
+      <h4 class="text-md font-bold font-archivo">
+        Software Engineer
+      </h4>
+    </div>
+    <div class="flex flex-col justify-center h-full">
+      <p class="font-archivo uppercase">Feb 2022 - Sep 2022</p>
+    </div>
+  </div>
+  <div class="w-full flex flex-row">
+    <div class="w-[30px]"></div>
+    {{ straight_line() }}
+    <div class="flex-1 pl-8 mb-4">
+      <ul class="text-xs list-disc">
+        <li>Orchestrated cloud infrastructures using AWS Cloudformation</li>
+        <li>Orchestrated CICD deployment pipelines through AWS CodePipeline, CodeBuild, and CodeDeploy</li>
+        <li>Utilized Github actions for linting and testing automations for each pull requests</li>
+        <li>Developed software solutions integrated with AWS services</li>
+        <li>Lead initiatives on planning codebase structures</li>
+        <li>Wrote Unit Tests with PyTest</li>
+        <li>Developed backend integrations and data pipelines through AWS Lambda using Python</li>
+        <li>Participated as a mentor for juniors</li>
+        <li>Lead a team of juniors for a ground up development of a marketing website using Gatsby.js</li>
+        <li>Implemented interactive WebGL implementations via Three.js</li>
+        <li>Handled technical interviews of applicants</li>
+        <li>Conducted Code Reviews</li>
+        <li>Translated high-fidelity mockups of the designer into a fully functioning website</li>
+        <li>Ensured all animations are displayed as per specifications</li>
+      </ul>
+    </div>
+  </div>
+  <div class="w-full flex flex-row">
+    <div class="w-[30px]"></div>
+    {{ line_point() }}
+    <div class="flex-1 pl-4 flex flex-col justify-center">
+      <h4 class="text-md font-bold font-archivo">
+        Junior Software Engineer
+      </h4>
+    </div>
+    <div class="flex flex-col justify-center h-full">
+      <p class="font-archivo uppercase">Oct 2019 - Aug 2022</p>
+    </div>
+  </div>
+  <div class="w-full flex flex-row">
+    <div class="w-[30px]"></div>
+    {{ straight_line() }}
+    <div class="flex-1 pl-8">
+      <ul class="text-xs list-disc">
+        <li>Worked on accounting and employee tracking systems</li>
+        <li>Worked on asset monitoring systems</li>
+        <li>Worked on serverless architectures</li>
+        <li>Worked on static marketing websites</li>
+        <li>Maintained and developed features on fullstack systems with Python and Django</li>
+        <li>Utilized Celery and Redis for asyncronous workers and Cronjobs</li>
+        <li>Developed backend integrations with AWS Lambda through Serverless framework</li>
+        <li>Worked on VanillaJS static marketing websites with Gulp and Hubspot</li>
+        <li>Developed matching algorithms for optimal assignment of guards to designated posts</li>
+      </ul>
+    </div>
+  </div>
+  <div class="w-full flex flex-row h-[30px]">
+    {{ curve_left() }}
+    {{ curve_left_down() }}
+    <div class="flex-1"></div>
+  </div>
+  <div class="w-full flex flex-row">
+    {{ line_point_gold() }}
+    <div class="flex-1 pl-4">
+      <h4 class="text-xl font-bold font-archivo uppercase">
+        98Labs Inc.
+      </h4>
+    </div>
+    <div class="flex flex-col justify-center h-full">
+      <p class="font-archivo uppercase">Jan 2019 - Sep 2019</p>
+    </div>
+  </div>
+  <div class="w-full flex flex-row">
+    {{ straight_line() }}
+    <div class="flex-1 pl-8">
+      <p class="text-xs">
+        Unit 2115, Cityland Herrera Tower V.A. Rufino corner Valero
+        Streets, Salcedo Village, Makati, 1227 Metro Manila
+      </p>
+    </div>
+  </div>
+  <div class="w-full flex flex-row h-[30px]">
+    {{ curve_right() }}
+    {{ curve_right_down() }}
+    <div class="flex-1"></div>
+  </div>
+</div>
+<div class="w-full flex flex-row">
+  <div class="w-[30px]"></div>
+  {{ line_point() }}
+  <div class="flex-1 pl-4 flex flex-col justify-center">
+    <h4 class="text-md font-bold font-archivo">
+      Intern
+    </h4>
+  </div>
+</div>
+<div class="w-full flex flex-row">
+  <div class="w-[30px]"></div>
+  {{ straight_line() }}
+  <div class="flex-1 pl-8">
+    <ul class="text-xs list-disc">
+      <li>Trained under experienced developers on HTML, CSS, and Node.js with ES6 standards.</li>
+      <li>Worked on front-end web applications using Angular</li>
+      <li>Worked on mobile applications using Ionic Framework</li>
+    </ul>
+  </div>
+</div>
