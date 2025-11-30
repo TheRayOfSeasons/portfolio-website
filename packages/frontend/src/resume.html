@@ -11,6 +11,11 @@
     html {
       -webkit-print-color-adjust: exact;
     }
+    @media print {
+      .page-break {
+        page-break-before: always;
+      }
+    }
   </style>
 </head>
 
@@ -349,7 +354,7 @@
 
 <body class="font-montserrat min-w-[780px] max-w-[800px] mx-auto">
   <!-- Page 1 -->
-  <div class="flex flex-row-reverse min-h-screen">
+  <div class="flex flex-row-reverse min-h-[200vh]">
     <div class="flex-[5] p-8 w-full">
       <h1 class="text-5xl font-bebas font-bold uppercase text-navy">
         Ray Lawrence Henri Sison
@@ -469,7 +474,7 @@
   </div>
 
   <!-- Page 2 -->
-  <div class="min-h-screen overflow-hidden flex flex-col pt-8 px-8 pb-2">
+  <div class="page-break min-h-screen overflow-hidden flex flex-col pt-8 px-8 pb-2">
     <div>
 
       <h1 class="text-5xl font-bebas font-bold uppercase text-navy text-center pb-6">
